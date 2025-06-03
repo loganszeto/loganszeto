@@ -8,14 +8,9 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "AI Alignment Research",
-    description: "Exploring methods to ensure AI systems remain aligned with human values and intentions.",
-  },
-  {
-    title: "Data Analysis Projects",
-    description: "Collection of data science and machine learning projects focused on real-world applications.",
-  },
-  // Add more projects as they become available
+    title: "Recovery Loop",
+    description: "Visualizing how my recovery and cardiovascular adaptation interacts with my strength training performance.",
+  }
 ];
 
 export default function Data() {
