@@ -1,5 +1,21 @@
 import { projects } from '@/lib/projectsData';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const project = projects.find(p => p.slug === params.slug);
+  
+  if (!project) {
+    return {
+      title: 'Project Not Found',
+    };
+  }
+
+  return {
+    title: project.title,
+    description: project.description,
+  };
+}
 
 // This function tells Next.js which slugs (project pages) to pre-build
 export function generateStaticParams() {
@@ -8,13 +24,16 @@ export function generateStaticParams() {
   }));
 }
 
-export default function ProjectDetailPage({ params }: { params: { slug: string } }) {
+export default async function Page({ params }: { params: { slug: string } }) {
   const project = projects.find(p => p.slug === params.slug);
 
   if (!project) {
     // If no project with that slug is found, show a 404 page
     notFound();
   }
+
+  // Simulate async operation to satisfy TypeScript
+  await Promise.resolve();
 
   return (
     <main className="container mx-auto px-4 py-12">
