@@ -22,16 +22,15 @@ export default function Tabs() {
     <div className="fixed top-0 left-0 right-0 z-50">
       <div className="flex bg-[#16161d] border-b border-[#363646]">
         {tabs.map((tab) => {
-          const isActive = pathname === tab.path;
+          const isActive = tab.path === '/' ? pathname === '/' : pathname.startsWith(tab.path);
           return (
             <Link
               key={tab.path}
               href={tab.path}
               className={`
-                px-6 py-3 flex items-center gap-2 text-base
+                px-8 py-1 flex items-center gap-2 text-base
                 border-r border-[#363646]
-                hover:bg-[#2a2a37] transition-colors
-                ${isActive ? 'bg-[#2a2a37]' : ''}
+                ${isActive ? 'bg-[#2a2a37]' : 'hover:bg-[#2a2a37]'} transition-colors
               `}
             >
               <span className="text-[#e6c384]">{tab.name}</span>

@@ -20,12 +20,12 @@ const projects: Project[] = [
 
 export default function Data() {
   return (
-    <main className="min-h-screen p-24 bg-[#1f1f28] text-gray-100">
+    <main className="min-h-screen p-24 text-gray-100">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-8">Projects & Data</h1>
         <div className="grid gap-8">
           {projects.map((project, index) => (
-            <div key={index} className="bg-[#1f1f28] p-6 rounded-lg">
+            <div key={index} className="p-6 rounded-lg">
               <h2 className="text-2xl font-bold mb-2">{project.title}</h2>
               <p className="text-gray-400 mb-4">{project.description}</p>
               {project.link && (
