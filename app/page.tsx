@@ -11,21 +11,32 @@ export default function Home() {
   const [cursorLine3, setCursorLine3] = useState(false);
 
   useEffect(() => {
+    // Calculate delays based on text length and typing speed (50ms per character)
+    const line1Text = 'Irvine, CA';
+    const line2Text = 'Student at UCI studying software engineering with a';
+    const line3Text = 'focus in data and AI alignment. Strength Training Enthusiast.';
+    
+    const line1Time = line1Text.length * 50;
+    const line2Time = line2Text.length * 50;
+    
+    // Start line 2 immediately after line 1 finishes
     const t1 = setTimeout(() => {
       setCursorLine1(false);
       setShowLine2(true);
       setCursorLine2(true);
-    }, 3000);
+    }, line1Time);
 
+    // Start line 3 immediately after line 2 finishes
     const t2 = setTimeout(() => {
       setCursorLine2(false);
       setShowLine3(true);
       setCursorLine3(true);
-    }, 7000);
+    }, line1Time + line2Time);
 
+    // Hide final cursor after line 3 finishes
     const t3 = setTimeout(() => {
       setCursorLine3(false);
-    }, 11000);
+    }, line1Time + line2Time + line3Text.length * 50);
 
     return () => {
       clearTimeout(t1);
@@ -39,69 +50,54 @@ export default function Home() {
       <h1 className="text-[#e6c384] text-5xl mb-6">Logan Szeto</h1>
 
       {/* Line 1 */}
-      <p className="text-gray-400 text-lg mb-1">
+      <div className="text-[#947fb8] text-lg mb-1">
         <Typewriter
           words={['Irvine, CA']}
           typeSpeed={50}
           deleteSpeed={0}
-          delaySpeed={1000}
+          delaySpeed={0}
           loop={1}
           cursor={cursorLine1}
           cursorStyle="_"
         />
-      </p>
+      </div>
 
       {/* Line 2 */}
       {showLine2 && (
-        <p className="text-gray-400 text-lg mb-1">
+        <div className="text-gray-400 text-lg mb-1">
           <Typewriter
-            words={['Student at UCI studying software engineering with a focus in data']}
+            words={['Student at UCI studying software engineering with a']}
             typeSpeed={50}
             deleteSpeed={0}
-            delaySpeed={1000}
+            delaySpeed={0}
             loop={1}
             cursor={cursorLine2}
             cursorStyle="_"
           />
-        </p>
+        </div>
       )}
 
       {/* Line 3 */}
       {showLine3 && (
-        <p className="text-gray-400 text-lg mb-4">
+        <div className="text-gray-400 text-lg mb-4">
           <Typewriter
-            words={['and AI alignment. Strength Training Enthusiast.']}
+            words={['focus in data and AI alignment. Strength Training Enthusiast.']}
             typeSpeed={50}
             deleteSpeed={0}
-            delaySpeed={1000}
+            delaySpeed={0}
             loop={1}
             cursor={cursorLine3}
             cursorStyle="_"
           />
-        </p>
+        </div>
       )}
-
-      {/* Social Icons */}
-      <div className="flex gap-4 mt-2">
-        <a href="https://github.com/loganszeto" target="_blank" rel="noopener noreferrer">
-          <svg className="w-8 h-8 text-gray-400 hover:text-[#e6c384] transition-colors" fill="currentColor" viewBox="0 0 24 24">
-            <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-          </svg>
-        </a>
-        <a href="https://linkedin.com/in/loganszeto" target="_blank" rel="noopener noreferrer">
-          <svg className="w-8 h-8 text-gray-400 hover:text-[#e6c384] transition-colors" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-          </svg>
-        </a>
-      </div>
-
       {/* Posts + Data */}
       <h1 className="text-[#e6c384] mt-10 text-3xl mb-6">posts</h1>
-      <p className="text-gray-400 text-lg mb-4">. . .</p>
-      <p className="text-gray-400 text-lg mb-4">. . .</p>
+      <div className="text-gray-400 text-lg mb-4">. . .</div>
+      <div className="text-gray-400 text-lg mb-4">. . .</div>
       <h1 className="text-[#e6c384] mt-2 text-3xl mb-6">data</h1>
-      <p className="text-gray-400 text-lg mb-4">. . .</p>
-      <p className="text-gray-400 text-lg mb-4">. . .</p>
+      <div className="text-gray-400 text-lg mb-4">. . .</div>
+      <div className="text-gray-400 text-lg mb-4">. . .</div>
     </div>
   );
 }
