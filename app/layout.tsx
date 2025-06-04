@@ -1,6 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import Navigation from './components/Navigation';
+import Tabs from './components/Tabs';
 
 export const metadata: Metadata = {
   title: 'Logan Szeto',
@@ -15,8 +15,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body style={{ fontFamily: 'Cascadia, monospace' }} className="bg-[#16161d] text-gray-100">
-        <Navigation />
-        <div className="pt-12">
+        <Tabs />
+        <div className="editor-content p-6">
           {children}
         </div>
       </body>
