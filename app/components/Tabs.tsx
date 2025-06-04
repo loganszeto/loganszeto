@@ -10,9 +10,9 @@ interface Tab {
 }
 
 const tabs: Tab[] = [
-  { name: 'home.tsx', path: '/' },
-  { name: 'posts.tsx', path: '/posts' },
-  { name: 'data.tsx', path: '/data' },
+  { name: 'home', path: '/' },
+  { name: 'posts', path: '/posts' },
+  { name: 'data', path: '/data' },
 ];
 
 export default function Tabs() {

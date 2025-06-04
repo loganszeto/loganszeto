@@ -1,9 +1,6 @@
-import Link from 'next/link';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
-
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen pl-40 pt-10">
+    <div className="flex flex-col min-h-screen pl-24 pt-10">
       <h1 className="text-[#e6c384] text-5xl mb-6">Logan Szeto</h1>
       <p className="text-gray-400 text-lg mb-4">Irvine, CA</p>
       <p className="text-gray-400 text-lg mb-4">Student at UCI studying software engineering with a focus</p>
