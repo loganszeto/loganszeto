@@ -46,63 +46,64 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen pl-26 pt-10">
-      <div className="h-[300px]"> {/* Fixed height container for intro content */}
-        <h1 className="text-[#e6c384] text-5xl mb-6">Logan Szeto</h1>
+    <div className="flex flex-col min-h-screen px-4 sm:px-6 lg:px-8 pt-10">
+      <div className="max-w-7xl mx-auto w-full">
+        <div className="h-[200px]">
+          <h1 className="text-[#e6c384] text-4xl sm:text-5xl mb-6">Logan Szeto</h1>
 
-        {/* Line 1 */}
-        <div className="text-gray-400 text-lg mb-1">
-          <Typewriter
-            words={['Irvine, CA']}
-            typeSpeed={50}
-            deleteSpeed={0}
-            delaySpeed={0}
-            loop={1}
-            cursor={cursorLine1}
-            cursorStyle="_"
-          />
+          {/* Line 1 */}
+          <div className="text-gray-400 text-base sm:text-lg mb-1">
+            <Typewriter
+              words={['Irvine, CA']}
+              typeSpeed={50}
+              deleteSpeed={0}
+              delaySpeed={0}
+              loop={1}
+              cursor={cursorLine1}
+              cursorStyle="_"
+            />
+          </div>
+
+          {/* Line 2 */}
+          {showLine2 && (
+            <div className="text-gray-400 text-base sm:text-lg mb-1">
+              <Typewriter
+                words={['Student at UCI studying software engineering with a focus']}
+                typeSpeed={50}
+                deleteSpeed={0}
+                delaySpeed={0}
+                loop={1}
+                cursor={cursorLine2}
+                cursorStyle="_"
+              />
+            </div>
+          )}
+
+          {/* Line 3 */}
+          {showLine3 && (
+            <div className="text-gray-400 text-base sm:text-lg mb-4">
+              <Typewriter
+                words={['in data and AI alignment. Strength Training Enthusiast.']}
+                typeSpeed={50}
+                deleteSpeed={0}
+                delaySpeed={0}
+                loop={1}
+                cursor={cursorLine3}
+                cursorStyle="_"
+              />
+            </div>
+          )}
         </div>
 
-        {/* Line 2 */}
-        {showLine2 && (
-          <div className="text-gray-400 text-lg mb-1">
-            <Typewriter
-              words={['Student at UCI studying software engineering with a']}
-              typeSpeed={50}
-              deleteSpeed={0}
-              delaySpeed={0}
-              loop={1}
-              cursor={cursorLine2}
-              cursorStyle="_"
-            />
-          </div>
-        )}
-
-        {/* Line 3 */}
-        {showLine3 && (
-          <div className="text-gray-400 text-lg mb-4">
-            <Typewriter
-              words={['focus in data and AI alignment. Strength Training Enthusiast.']}
-              typeSpeed={50}
-              deleteSpeed={0}
-              delaySpeed={0}
-              loop={1}
-              cursor={cursorLine3}
-              cursorStyle="_"
-            />
-          </div>
-        )}
-
-      </div>
-
-      {/* Posts + Data Section */}
-      <div className="mt-10">
-        <h1 className="text-[#e6c384] text-3xl mb-6">posts</h1>
-        <div className="text-gray-400 text-lg mb-4">. . .</div>
-        <div className="text-gray-400 text-lg mb-4">. . .</div>
-        <h1 className="text-[#e6c384] mt-2 text-3xl mb-6">data</h1>
-        <div className="text-gray-400 text-lg mb-4">. . .</div>
-        <div className="text-gray-400 text-lg mb-4">. . .</div>
+        {/* Posts + Data Section */}
+        <div className="mt-0">
+          <h1 className="text-[#e6c384] text-2xl sm:text-3xl mb-6">posts</h1>
+          <div className="text-gray-400 text-base sm:text-lg mb-4">. . .</div>
+          <div className="text-gray-400 text-base sm:text-lg mb-4">. . .</div>
+          <h1 className="text-[#e6c384] text-2xl sm:text-3xl mt-2 mb-6">data</h1>
+          <div className="text-gray-400 text-base sm:text-lg mb-4">. . .</div>
+          <div className="text-gray-400 text-base sm:text-lg mb-4">. . .</div>
+        </div>
       </div>
     </div>
   );

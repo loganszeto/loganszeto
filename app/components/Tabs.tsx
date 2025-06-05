@@ -19,9 +19,9 @@ export default function Tabs() {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 bg-[#1f1f28]">
-      <div className="max-w-7xl mx-auto px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between py-2">
-          <div className="flex">
+          <div className="flex space-x-4 sm:space-x-8">
             {tabs.map((tab) => {
               const isActive = tab.path === '/' ? pathname === '/' : pathname.startsWith(tab.path);
               return (
@@ -29,7 +29,7 @@ export default function Tabs() {
                   key={tab.path}
                   href={tab.path}
                   className={`
-                    mr-8 text-base
+                    text-base
                     ${isActive ? 'text-[#e6c384]' : 'text-gray-400 hover:text-[#e6c384]'} 
                     transition-colors
                   `}
