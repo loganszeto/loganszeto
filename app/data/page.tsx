@@ -8,13 +8,10 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "AI Alignment Research",
-    description: "Exploring methods to ensure AI systems remain aligned with human values and intentions.",
-  },
-  {
-    title: "Data Analysis Projects",
-    description: "Collection of data science and machine learning projects focused on real-world applications.",
-  },
+    title: "The Recovery Loop",
+    description: "A comprehensive platform designed to support individuals in their recovery journey, providing tools and resources for maintaining sobriety and mental well-being.",
+    link: "/projects/recovery-loop"
+  }
   // Add more projects as they become available
 ];
 
