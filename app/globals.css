@@ -43,14 +43,3 @@ body {
   @apply relative mt-12 px-6;
   min-height: calc(100vh - 3rem);
 }
-
-/* Line numbers */
-.editor-content p {
-  @apply relative;
-  counter-increment: line;
-}
-
-.editor-content p::before {
-  content: counter(line);
-  @apply absolute -left-6 text-gray-600 text-right w-4;
-}

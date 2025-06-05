@@ -20,18 +20,18 @@ const projects: Project[] = [
 
 export default function Data() {
   return (
-    <main className="min-h-screen p-24 text-gray-100">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8">Projects & Data</h1>
+    <div className="flex flex-col min-h-screen px-4 sm:px-6 lg:px-8 pt-10">
+      <div className="max-w-7xl mx-auto w-full">
+        <h1 className="text-[#e6c384] text-4xl sm:text-5xl mb-6">Projects & Data</h1>
         <div className="grid gap-8">
           {projects.map((project, index) => (
-            <div key={index} className="p-6 rounded-lg">
-              <h2 className="text-2xl font-bold mb-2">{project.title}</h2>
-              <p className="text-gray-400 mb-4">{project.description}</p>
+            <div key={index} className="rounded-lg">
+              <h2 className="text-2xl sm:text-3xl text-[#e6c384] mb-2">{project.title}</h2>
+              <p className="text-gray-400 text-base sm:text-lg mb-4">{project.description}</p>
               {project.link && (
                 <Link 
                   href={project.link}
-                  className="text-blue-400 hover:text-blue-300 transition-colors"
+                  className="text-[#e6c384] hover:text-gray-400 transition-colors"
                 >
                   Learn more →
                 </Link>
@@ -40,6 +40,6 @@ export default function Data() {
           ))}
         </div>
       </div>
-    </main>
+    </div>
   );
 } 
