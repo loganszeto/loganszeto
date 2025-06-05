@@ -1,0 +1,31 @@
+name: Sync Health Data
+
+on:
+  schedule:
+    - cron: '0 5 * * *'  # Runs at 5 AM UTC daily
+  workflow_dispatch:      # Allows manual trigger
+
+jobs:
+  sync:
+    runs-on: macos-latest  # Using macOS runner for iCloud access
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Process Health Data
+        run: node scripts/process-health-data.js
+        env:
+          HEALTH_EXPORT_PATH: ${{ github.workspace }}/health_export.json
+          
+      - name: Commit and Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add public/data/health.json
+          git commit -m "Update health data" || exit 0
+          git push 
