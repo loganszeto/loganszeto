@@ -1,30 +1,6 @@
 {
-<<<<<<< HEAD
-  "lastUpdated": "2024-03-20T00:00:00Z",
+  "lastUpdated": "2025-06-09T05:16:33.040Z",
   "vo2Max": [],
   "activeEnergy": [],
   "sleepAnalysis": []
-} 
-=======
-  "lastUpdated": "2025-06-09T05:16:33.040Z",
-  "vo2Max": [
-    {
-      "date": "2024-03-20T10:00:00Z",
-      "value": 42.5
-    }
-  ],
-  "activeEnergy": [
-    {
-      "date": "2024-03-20T15:30:00Z",
-      "value": 300
-    }
-  ],
-  "sleepAnalysis": [
-    {
-      "startDate": "2024-03-20T22:00:00Z",
-      "endDate": "2024-03-21T06:00:00Z",
-      "value": "ASLEEP"
-    }
-  ]
 }
->>>>>>> cef2bbc5940cbe4221a0aa7cf646dd8145a70f5c
