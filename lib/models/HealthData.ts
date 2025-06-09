@@ -6,6 +6,10 @@ const healthDataSchema = new mongoose.Schema({
     required: true,
     default: Date.now,
   },
+  rawData: {
+    type: mongoose.Schema.Types.Mixed,
+    required: true,
+  },
   activeEnergy: [{
     date: {
       type: Date,

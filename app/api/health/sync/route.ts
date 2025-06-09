@@ -26,20 +26,47 @@ interface StoredHealthData {
 
 export async function POST(request: Request) {
   try {
+    // Log the request headers
+    const headers = Object.fromEntries(request.headers.entries());
+    console.log('Request headers:', headers);
+
+    // Get and log the raw body
+    const rawBody = await request.text();
+    console.log('Raw request body:', rawBody);
+
+    // Try to parse the JSON
+    let data;
+    try {
+      data = JSON.parse(rawBody);
+      console.log('Parsed data:', JSON.stringify(data, null, 2));
+    } catch (e) {
+      console.error('Failed to parse JSON:', e);
+      return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
+    }
+
+    // Connect to database
     await connectToDatabase();
-    const data = await request.json();
-    
+
+    // Store the raw data for debugging
     const healthData = new HealthData({
-      activeEnergy: data.activeEnergy,
-      sleepAnalysis: data.sleepAnalysis,
+      rawData: data, // Store the complete raw data
+      activeEnergy: [],  // We'll parse this properly once we see the format
+      sleepAnalysis: [], // We'll parse this properly once we see the format
+      timestamp: new Date()
     });
 
     await healthData.save();
-    return NextResponse.json({ success: true });
+
+    // Return success with the raw data we received
+    return NextResponse.json({ 
+      success: true,
+      receivedData: data,
+      message: 'Data received and stored for debugging'
+    });
   } catch (error) {
-    console.error('Error processing health data:', error);
+    console.error('Error:', error);
     return NextResponse.json(
-      { error: 'Failed to process health data' },
+      { error: 'Failed to process request', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     );
   }
@@ -48,7 +75,7 @@ export async function POST(request: Request) {
 export async function GET() {
   try {
     await connectToDatabase();
-    const data = await HealthData.find().sort({ timestamp: -1 }).limit(7); // Last 7 days
+    const data = await HealthData.find().sort({ timestamp: -1 }).limit(7);
     return NextResponse.json({ data });
   } catch (error) {
     console.error('Error fetching health data:', error);

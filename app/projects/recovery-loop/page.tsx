@@ -19,31 +19,34 @@ export default function RecoveryLoop() {
 
   const fetchHealthData = async () => {
     try {
-      const response = await fetch('/data/health.json');
+      const response = await fetch('/api/health/sync');
       if (!response.ok) {
         throw new Error('Failed to fetch health data');
       }
-      const data = await response.json();
+      const { data } = await response.json();
+      
+      if (!data || data.length === 0) {
+        throw new Error('No health data available');
+      }
+
+      // Get the most recent data entry
+      const latestData = data[0];
       
       // Convert string dates back to Date objects
       const processedData: HealthData = {
-        sleepAnalysis: data.sleepAnalysis.map((entry: any) => ({
+        sleepAnalysis: latestData.sleepAnalysis.map((entry: any) => ({
           ...entry,
           startDate: new Date(entry.startDate),
           endDate: new Date(entry.endDate)
         })),
-        vo2Max: data.vo2Max.map((entry: any) => ({
-          ...entry,
-          date: new Date(entry.date)
-        })),
-        activeEnergy: data.activeEnergy.map((entry: any) => ({
+        activeEnergy: latestData.activeEnergy.map((entry: any) => ({
           ...entry,
           date: new Date(entry.date)
         }))
       };
 
       setHealthData(processedData);
-      setLastUpdated(new Date(data.lastUpdated || Date.now()));
+      setLastUpdated(new Date(latestData.timestamp || Date.now()));
     } catch (err) {
       setError('Error loading health data. Please try again later.');
       console.error(err);
@@ -82,7 +85,6 @@ export default function RecoveryLoop() {
         ) : healthData ? (
           <div className="space-y-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <VO2MaxChart data={healthData.vo2Max} />
               <CaloriesChart data={healthData.activeEnergy} />
             </div>
             <SleepChart data={healthData.sleepAnalysis} />
@@ -104,7 +106,7 @@ export default function RecoveryLoop() {
             <h3 className="text-[#e6c384] text-2xl mb-4">Data Pipeline</h3>
             <p className="text-gray-400 text-base sm:text-lg">
               Your health data is automatically synced from your Apple Watch through Health Auto Export, 
-              stored securely in iCloud, and updated to this dashboard via GitHub. The process is fully 
+              stored securely in MongoDB, and displayed on this dashboard. The process is fully 
               automated, ensuring your dashboard always shows your latest metrics.
             </p>
           </section>

@@ -2,8 +2,8 @@ import { parseString } from 'xml2js';
 
 export interface HealthData {
   sleepAnalysis: SleepEntry[];
-  vo2Max: VO2MaxEntry[];
   activeEnergy: EnergyEntry[];
+  vo2Max?: VO2MaxEntry[];
 }
 
 export interface SleepEntry {
