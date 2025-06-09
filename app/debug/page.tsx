@@ -14,6 +14,7 @@ export default function DebugPage() {
 
   const fetchDebugData = async () => {
     try {
+      setLoading(true);
       const response = await fetch('/api/health/debug');
       const result = await response.json();
       setData(result);
@@ -32,12 +33,20 @@ export default function DebugPage() {
   return (
     <div className="flex flex-col min-h-screen px-4 sm:px-6 lg:px-8 pt-10">
       <div className="max-w-7xl mx-auto w-full">
-        <Link 
-          href="/" 
-          className="text-[#e6c384] hover:text-gray-400 transition-colors mb-6 inline-block"
-        >
-          ← Back to Home
-        </Link>
+        <div className="flex justify-between items-center mb-6">
+          <Link 
+            href="/" 
+            className="text-[#e6c384] hover:text-gray-400 transition-colors inline-block"
+          >
+            ← Back to Home
+          </Link>
+          <button
+            onClick={fetchDebugData}
+            className="px-4 py-2 bg-[#e6c384] text-gray-900 rounded hover:bg-[#c4a76d] transition-colors"
+          >
+            Refresh Data
+          </button>
+        </div>
         
         <h1 className="text-[#e6c384] text-4xl sm:text-5xl mb-6">Health Data Debug View</h1>
         
