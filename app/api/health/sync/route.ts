@@ -2,6 +2,15 @@ import { NextResponse } from 'next/server';
 import connectToDatabase from '@/lib/mongodb';
 import HealthData from '@/lib/models/HealthData';
 
+// Increase body size limit to 10mb
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '10mb',
+    },
+  },
+};
+
 interface HealthDataEntry {
   activeEnergy: Array<{
     date: string;
@@ -34,7 +43,7 @@ export async function POST(request: Request) {
     const rawBody = await request.text();
     console.log('Raw request body:', rawBody);
 
-    // Try to parse the JSON
+    // Parse the JSON data
     let data;
     try {
       data = JSON.parse(rawBody);
@@ -47,21 +56,24 @@ export async function POST(request: Request) {
     // Connect to database
     await connectToDatabase();
 
-    // Store the raw data for debugging
+    // Store both raw and parsed data
     const healthData = new HealthData({
-      rawData: data, // Store the complete raw data
-      activeEnergy: [],  // We'll parse this properly once we see the format
-      sleepAnalysis: [], // We'll parse this properly once we see the format
+      rawData: data,
+      activeEnergy: data.activeEnergy || [],
+      sleepAnalysis: data.sleepAnalysis || [],
       timestamp: new Date()
     });
 
     await healthData.save();
 
-    // Return success with the raw data we received
+    // Return success with the parsed data
     return NextResponse.json({ 
       success: true,
-      receivedData: data,
-      message: 'Data received and stored for debugging'
+      data: {
+        activeEnergy: data.activeEnergy || [],
+        sleepAnalysis: data.sleepAnalysis || []
+      },
+      message: 'Data received and stored successfully'
     });
   } catch (error) {
     console.error('Error:', error);
