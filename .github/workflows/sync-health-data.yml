@@ -19,8 +19,6 @@ jobs:
           
       - name: Process Health Data
         run: node scripts/process-health-data.js
-        env:
-          HEALTH_EXPORT_PATH: ${{ github.workspace }}/health_export.json
           
       - name: Commit and Push
         run: |
