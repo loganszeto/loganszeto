@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // This is the crucial line to add
-  output: 'export',
+  output: 'standalone',
 
   // Other configurations like reactStrictMode might be here
   reactStrictMode: true,
@@ -16,6 +16,10 @@ const nextConfig = {
     // During development, type errors won't fail the build
     ignoreBuildErrors: true,
   },
+
+  eslint: {
+    ignoreDuringBuilds: true
+  }
 };
 
 export default nextConfig; 

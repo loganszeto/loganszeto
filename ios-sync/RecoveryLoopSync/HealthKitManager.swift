@@ -133,7 +133,8 @@ class HealthKitManager {
     }
     
     func syncToServer(data: Data, completion: @escaping (Error?) -> Void) {
-        guard let url = URL(string: "https://your-website.com/api/health/sync") else {
+        // Update this URL to match your actual deployed website URL when ready
+        guard let url = URL(string: "http://localhost:3000/api/health/sync") else {
             completion(NSError(domain: "Invalid URL", code: -1))
             return
         }
@@ -144,7 +145,22 @@ class HealthKitManager {
         request.httpBody = data
         
         URLSession.shared.dataTask(with: request) { data, response, error in
-            completion(error)
+            if let error = error {
+                completion(error)
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(NSError(domain: "Invalid response", code: -1))
+                return
+            }
+            
+            if !(200...299).contains(httpResponse.statusCode) {
+                completion(NSError(domain: "Server error", code: httpResponse.statusCode))
+                return
+            }
+            
+            completion(nil)
         }.resume()
     }
 } 
