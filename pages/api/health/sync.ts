@@ -12,6 +12,12 @@ export const config = {
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // Debug logging for request size
+  const contentLength = req.headers['content-length'];
+  const sizeInMB = contentLength ? (parseInt(contentLength) / (1024 * 1024)).toFixed(2) : 'unknown';
+  console.log(`Request size: ${contentLength} bytes (${sizeInMB} MB)`);
+  console.log('Content-Type:', req.headers['content-type']);
+
   // Handle GET request for fetching data
   if (req.method === 'GET') {
     try {
