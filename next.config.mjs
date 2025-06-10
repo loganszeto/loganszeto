@@ -7,11 +7,16 @@ const nextConfig = {
   // Base path for GitHub Pages (your repository name)
   basePath: process.env.GITHUB_ACTIONS ? '/loganszeto' : '',
 
+  // Asset prefix for GitHub Pages
+  assetPrefix: process.env.GITHUB_ACTIONS ? '/loganszeto' : '',
+
   // Other configurations like reactStrictMode might be here
   reactStrictMode: true,
 
   images: {
     unoptimized: true,
+    loader: 'custom',
+    loaderFile: './app/image.ts',
   },
 
   trailingSlash: true,
@@ -56,14 +61,7 @@ const nextConfig = {
     cleanDistDir: true,
     skipTrailingSlashRedirect: true,
     skipMiddlewareUrlNormalize: true,
-    output: 'export',
-    assetPrefix: '/loganszeto',
-    images: {
-      loader: 'custom',
-      loaderFile: './app/image.ts',
-    },
   } : {
-    output: 'standalone',
     generateEtags: false,
     poweredByHeader: false,
     compress: true,
