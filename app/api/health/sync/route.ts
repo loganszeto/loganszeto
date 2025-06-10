@@ -1,10 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import clientPromise from '@/lib/mongodb';
+import { connectToDatabase } from '@/lib/mongodb';
+import { MongoClient } from 'mongodb';
+import HealthData from '@/lib/models/HealthData';
 
 // Configure route to handle large payloads
 export const dynamic = 'force-dynamic';
 export const maxDuration = 300; // 5 minutes
 export const fetchCache = 'force-no-store';
+
+let mongoClient: MongoClient | null = null;
 
 // Handle OPTIONS requests for CORS
 export async function OPTIONS() {
@@ -21,8 +25,8 @@ export async function OPTIONS() {
 
 export async function POST(req: NextRequest) {
   try {
-    // Get MongoDB client from the connection pool
-    const mongoClient = await clientPromise;
+    // Connect to MongoDB
+    await connectToDatabase();
     
     // Parse the request body with streaming
     const text = await req.text();
@@ -37,23 +41,21 @@ export async function POST(req: NextRequest) {
     // Parse JSON
     const body = JSON.parse(text);
 
-    // Store in MongoDB
-    const database = mongoClient.db('health_data');
-    const collection = database.collection('health_records');
-    
-    const result = await collection.insertOne({
+    // Store in MongoDB using mongoose
+    const healthData = new HealthData({
       data: body,
       timestamp: new Date(),
       userId: body.userId || 'anonymous',
       size: text.length
     });
     
-    console.log(`[Health Sync] Successfully stored data with ID: ${result.insertedId}`);
+    await healthData.save();
+    console.log(`[Health Sync] Successfully stored data`);
     
     return NextResponse.json({ 
       success: true,
       message: 'Health data synced successfully',
-      id: result.insertedId 
+      id: healthData._id 
     }, { 
       status: 200,
       headers: {
