@@ -15,7 +15,10 @@ const tabs: Tab[] = [
 ];
 
 export default function Tabs() {
-  const pathname = usePathname();
+  const pathname = usePathname() || '/';
+  
+  // Remove the basePath from pathname for comparison
+  const normalizedPathname = pathname.replace('/loganszeto', '');
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 bg-[#1f1f28]">
@@ -23,7 +26,7 @@ export default function Tabs() {
         <div className="flex justify-between py-2">
           <div className="flex space-x-4 sm:space-x-8">
             {tabs.map((tab) => {
-              const isActive = tab.path === '/' ? pathname === '/' : pathname.startsWith(tab.path);
+              const isActive = tab.path === '/' ? normalizedPathname === '/' : normalizedPathname.startsWith(tab.path);
               return (
                 <Link
                   key={tab.path}

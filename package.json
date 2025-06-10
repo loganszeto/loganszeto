@@ -8,7 +8,8 @@
     "build:static": "GITHUB_ACTIONS=true next build",
     "build:server": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:static": "npm run build:static && npx serve out"
   },
   "dependencies": {
     "@types/node": "20.11.30",
