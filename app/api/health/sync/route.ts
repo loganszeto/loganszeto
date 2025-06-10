@@ -2,9 +2,10 @@ import { NextResponse } from 'next/server';
 
 // Mark this route as static
 export const dynamic = 'force-static';
+export const runtime = 'edge';
 
 // Handle OPTIONS request for CORS
-export async function OPTIONS() {
+export function OPTIONS() {
   return new NextResponse(null, {
     status: 200,
     headers: {
@@ -17,11 +18,11 @@ export async function OPTIONS() {
 }
 
 // Handle GET request - redirect to Cloud Run
-export async function GET() {
+export function GET() {
   return NextResponse.redirect('https://loganszeto-660180661332.us-west2.run.app/api/health/sync', 307);
 }
 
 // Handle POST request - redirect to Cloud Run
-export async function POST() {
+export function POST() {
   return NextResponse.redirect('https://loganszeto-660180661332.us-west2.run.app/api/health/sync', 307);
 } 

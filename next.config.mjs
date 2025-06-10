@@ -15,8 +15,6 @@ const nextConfig = {
 
   images: {
     unoptimized: true,
-    loader: 'custom',
-    loaderFile: './app/image.ts',
   },
 
   trailingSlash: true,
@@ -48,9 +46,6 @@ const nextConfig = {
   }),
 
   experimental: {
-    serverActions: {
-      enabled: true,
-    },
     // Enable large payload support
     largePageDataBytes: 128 * 1024 * 1024, // 128MB
   },
