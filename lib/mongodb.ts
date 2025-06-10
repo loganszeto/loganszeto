@@ -10,13 +10,16 @@ const uri = process.env.MONGODB_URI;
 const options: MongoClientOptions = {
   maxPoolSize: 1, // Reduce connection pool size for serverless
   minPoolSize: 0, // Don't maintain minimum connections
-  maxIdleTimeMS: 10000, // Close idle connections after 10 seconds
-  serverSelectionTimeoutMS: 10000, // Fail fast if can't connect
-  socketTimeoutMS: 20000, // Fail fast if operation takes too long
-  connectTimeoutMS: 10000, // Fail fast if initial connection takes too long
+  maxIdleTimeMS: 30000, // Increased idle timeout to 30 seconds
+  serverSelectionTimeoutMS: 15000, // Increased selection timeout
+  socketTimeoutMS: 45000, // Increased socket timeout for larger payloads
+  connectTimeoutMS: 15000, // Increased connection timeout
   retryWrites: true,
   retryReads: true,
   w: 'majority',
+  // Add compression for better performance with large payloads
+  compressors: ['zlib'],
+  zlibCompressionLevel: 6,
 };
 
 console.log('MongoDB connection options:', JSON.stringify(options, null, 2));
