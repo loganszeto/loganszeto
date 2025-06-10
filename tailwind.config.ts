@@ -11,19 +11,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // You can define your custom colors here
-        primary: {
-          // Example: GitHub dark theme colors
-          DEFAULT: '#0d1117', // Dark background
-          light: '#161b22',   // Lighter background
-          text: '#c9d1d9',    // Primary text
-          accent: '#58a6ff',  // Links and accents
-        },
-        secondary: {
-          DEFAULT: '#21262d', // Card backgrounds
-          hover: '#30363d',   // Hover states
-          text: '#8b949e',    // Secondary text
-        },
+        primary: '#1f1f28', // Dark background
+        secondary: '#2a2a37', // Slightly lighter background
+        accent: '#e6c384', // Your gold accent color
+        'gray-custom': '#7c7c7c', // Your custom gray
+        'text-primary': '#c8c093', // Primary text color
+      },
+      backgroundColor: {
+        'page': '#1f1f28',
+      },
+      textColor: {
+        'default': '#c8c093',
+        'muted': '#7c7c7c',
+        'accent': '#e6c384',
       },
       fontFamily: {
         sans: ['Cascadia', 'Arial', 'sans-serif'],

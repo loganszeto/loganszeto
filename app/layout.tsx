@@ -13,10 +13,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body style={{ fontFamily: 'Cascadia, monospace' }} className="bg-primary text-primary-text">
+    <html lang="en">
+      <body className="bg-[#1f1f28]">
         <Tabs />
-        <div className="editor-content p-6">
+        <div className="editor-content">
           {children}
         </div>
       </body>

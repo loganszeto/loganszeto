@@ -4,13 +4,21 @@
 
 @layer base {
   :root {
-    --foreground-rgb: 201, 209, 217;
-    --background-rgb: 13, 17, 23;
+    --background: #1f1f28;
+    --text-primary: #c8c093;
+    --text-muted: #7c7c7c;
+    --accent: #e6c384;
   }
 
   body {
+    background-color: var(--background);
+    color: var(--text-primary);
     @apply bg-primary text-primary-text;
     font-family: 'Cascadia', Arial, sans-serif;
+  }
+
+  h1 {
+    color: var(--accent);
   }
 }
 
@@ -29,7 +37,7 @@
   }
 
   .nav-link {
-    @apply text-primary-text hover:text-primary-accent transition-colors duration-200;
+    @apply text-[#7c7c7c] hover:text-[#e6c384] transition-colors duration-200;
   }
 
   .main-container {
@@ -37,19 +45,19 @@
   }
 
   h1 {
-    @apply text-4xl font-bold text-primary-text mb-4;
+    @apply text-[#e6c384] text-4xl font-bold mb-4;
   }
 
   h2 {
-    @apply text-2xl font-semibold text-primary-text mb-3;
+    @apply text-[#e6c384] text-2xl font-semibold mb-3;
   }
 
   p {
-    @apply text-primary-text mb-4;
+    @apply text-[#c8c093] mb-4;
   }
 
   a {
-    @apply text-primary-accent hover:text-primary-text transition-colors duration-200;
+    @apply text-[#7c7c7c] hover:text-[#e6c384] transition-colors duration-200;
   }
 
   pre {
