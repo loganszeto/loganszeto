@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+// Trigger rebuild - Added MongoDB URI to GitHub secrets
 const nextConfig = {
   // This is the crucial line to add
   output: 'standalone',
