@@ -30,22 +30,20 @@ const nextConfig = {
           { key: 'Access-Control-Allow-Origin', value: '*' },
           { key: 'Access-Control-Allow-Methods', value: 'GET, POST, OPTIONS' },
           { key: 'Access-Control-Allow-Headers', value: 'Content-Type, Authorization' },
+          { key: 'Access-Control-Max-Age', value: '86400' },
         ],
       },
     ];
   },
 
-  api: {
-    bodyParser: {
-      sizeLimit: '10mb',
-    },
-  },
-
   experimental: {
     serverActions: {
-      enabled: true
-    }
-  }
+      enabled: true,
+    },
+    // Enable large payload support
+    largePageDataBytes: 128 * 1024 * 1024, // 128MB
+    serverComponentsExternalPackages: ['mongodb'],
+  },
 };
 
 export default nextConfig; 

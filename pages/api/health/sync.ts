@@ -1,6 +1,6 @@
 // Force Vercel redeploy - 2024-03-20
 import type { NextApiRequest, NextApiResponse } from 'next';
-import connectToDatabase from '@/lib/mongodb';
+import { connectToDatabase } from '@/lib/mongodb';
 import HealthData from '@/lib/models/HealthData';
 
 export const config = {
