@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 // Trigger rebuild - Testing Cloud Run deployment with new service account
 const nextConfig = {
-  // This is the crucial line to add
-  output: 'standalone',
+  // Output configuration based on the environment
+  output: process.env.GITHUB_ACTIONS ? 'export' : 'standalone',
+  
+  // Base path for GitHub Pages (your repository name)
+  basePath: process.env.GITHUB_ACTIONS ? '/loganszeto' : '',
 
   // Other configurations like reactStrictMode might be here
   reactStrictMode: true,
