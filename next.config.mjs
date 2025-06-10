@@ -25,20 +25,22 @@ const nextConfig = {
     ignoreDuringBuilds: true
   },
 
-  // CORS headers for all environments
-  async headers() {
-    return [
-      {
-        source: '/api/:path*',
-        headers: [
-          { key: 'Access-Control-Allow-Origin', value: '*' },
-          { key: 'Access-Control-Allow-Methods', value: 'GET, POST, OPTIONS' },
-          { key: 'Access-Control-Allow-Headers', value: 'Content-Type, Authorization' },
-          { key: 'Access-Control-Max-Age', value: '86400' },
-        ],
-      },
-    ];
-  },
+  // CORS headers only for non-static deployment
+  ...(process.env.GITHUB_ACTIONS ? {} : {
+    async headers() {
+      return [
+        {
+          source: '/api/:path*',
+          headers: [
+            { key: 'Access-Control-Allow-Origin', value: '*' },
+            { key: 'Access-Control-Allow-Methods', value: 'GET, POST, OPTIONS' },
+            { key: 'Access-Control-Allow-Headers', value: 'Content-Type, Authorization' },
+            { key: 'Access-Control-Max-Age', value: '86400' },
+          ],
+        },
+      ];
+    },
+  }),
 
   experimental: {
     serverActions: {
