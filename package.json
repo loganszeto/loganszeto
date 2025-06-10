@@ -5,11 +5,11 @@
   "scripts": {
     "dev": "next dev -p 3003",
     "build": "next build",
-    "build:static": "GITHUB_ACTIONS=true next build",
+    "build:static": "next build",
     "build:server": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test:static": "npm run build:static && npx serve out"
+    "test:static": "npm run build && npx serve out"
   },
   "dependencies": {
     "@types/node": "20.11.30",
