@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
-import { connectToDatabase } from '../../../../lib/mongodb';
+
+// Mark this route as static
+export const dynamic = 'force-static';
 
 // Handle OPTIONS request for CORS
 export async function OPTIONS() {
@@ -14,71 +16,12 @@ export async function OPTIONS() {
   });
 }
 
-// Handle GET request
+// Handle GET request - redirect to Cloud Run
 export async function GET() {
-  try {
-    const { db } = await connectToDatabase();
-    const documents = await db.collection('health').find().sort({ timestamp: -1 }).toArray();
-    return NextResponse.json({ data: documents });
-  } catch (error) {
-    console.error('Error in GET /api/health/sync:', error);
-    return NextResponse.json(
-      {
-        error: 'Internal server error',
-        message: error instanceof Error ? error.message : 'Unknown error occurred',
-      },
-      { status: 500 }
-    );
-  }
+  return NextResponse.redirect('https://loganszeto-660180661332.us-west2.run.app/api/health/sync', 307);
 }
 
-// Handle POST request
-export async function POST(request: Request) {
-  try {
-    // Get the data from the request body
-    const healthData = await request.json();
-    console.log('Received data:', JSON.stringify(healthData));
-
-    // Validate the data
-    if (!Array.isArray(healthData)) {
-      console.log('Invalid data format:', typeof healthData);
-      return NextResponse.json(
-        { error: 'Invalid data format. Expected an array.' },
-        { status: 400 }
-      );
-    }
-
-    // If the array is empty, return success without doing anything
-    if (healthData.length === 0) {
-      console.log('Empty array received, returning early');
-      return NextResponse.json({ message: 'No data to process' });
-    }
-
-    // Add timestamp to each document
-    const documentsWithTimestamp = healthData.map(data => ({
-      ...data,
-      timestamp: new Date().toISOString()
-    }));
-
-    // Insert the data
-    console.log('Attempting to insert data...');
-    const { db } = await connectToDatabase();
-    const result = await db.collection('health').insertMany(documentsWithTimestamp);
-    console.log('Successfully inserted data');
-
-    // Return success response
-    return NextResponse.json({
-      message: 'Data synced successfully',
-      insertedCount: Object.keys(result.insertedIds).length,
-    });
-  } catch (error) {
-    console.error('Error in POST /api/health/sync:', error);
-    return NextResponse.json(
-      {
-        error: 'Internal server error',
-        message: error instanceof Error ? error.message : 'Unknown error occurred',
-      },
-      { status: 500 }
-    );
-  }
+// Handle POST request - redirect to Cloud Run
+export async function POST() {
+  return NextResponse.redirect('https://loganszeto-660180661332.us-west2.run.app/api/health/sync', 307);
 } 
