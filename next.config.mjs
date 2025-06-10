@@ -55,6 +55,11 @@ const nextConfig = {
     skipTrailingSlashRedirect: true,
     skipMiddlewareUrlNormalize: true,
     output: 'export',
+    assetPrefix: '/loganszeto',
+    images: {
+      loader: 'custom',
+      loaderFile: './app/image.ts',
+    },
   } : {
     output: 'standalone',
     generateEtags: false,

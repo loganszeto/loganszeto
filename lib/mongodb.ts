@@ -6,18 +6,20 @@ if (!process.env.MONGODB_URI) {
 
 const uri = process.env.MONGODB_URI;
 const options: MongoClientOptions = {
-  connectTimeoutMS: 10000,
-  socketTimeoutMS: 10000,
-  serverSelectionTimeoutMS: 10000,
-  maxPoolSize: 10,
-  minPoolSize: 0,
-  maxIdleTimeMS: 30000,
-  waitQueueTimeoutMS: 10000,
+  connectTimeoutMS: 30000,
+  socketTimeoutMS: 45000,
+  serverSelectionTimeoutMS: 60000,
+  maxPoolSize: 50,
+  minPoolSize: 5,
+  maxIdleTimeMS: 120000,
+  waitQueueTimeoutMS: 30000,
   retryWrites: true,
   w: 'majority' as const,
+  retryReads: true,
   ssl: true,
   tls: true,
   tlsAllowInvalidCertificates: false,
+  directConnection: true,
 };
 
 let client: MongoClient;
