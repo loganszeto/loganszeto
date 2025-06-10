@@ -50,12 +50,16 @@ const nextConfig = {
     largePageDataBytes: 128 * 1024 * 1024, // 128MB
   },
 
-  // Skip API routes during static export
+  // Configuration for static export
   ...(process.env.GITHUB_ACTIONS ? {
     distDir: '.next',
     cleanDistDir: true,
     skipTrailingSlashRedirect: true,
     skipMiddlewareUrlNormalize: true,
+    // Exclude API routes from static export
+    pageExtensions: ['tsx', 'ts', 'jsx', 'js'].filter(ext => 
+      !process.env.GITHUB_ACTIONS || !ext.startsWith('api/')
+    ),
   } : {}),
 
   env: {
