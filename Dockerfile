@@ -24,6 +24,9 @@ ENV NEXT_TELEMETRY_DISABLED 1
 ARG MONGODB_URI
 ENV MONGODB_URI=$MONGODB_URI
 
+# Create env file
+RUN touch .env.local && echo "MONGODB_URI=$MONGODB_URI" >> .env.local
+
 RUN npm run build:server
 
 # Production image, copy all the files and run next
