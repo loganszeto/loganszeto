@@ -2,10 +2,12 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -22,6 +24,9 @@ const config: Config = {
           hover: '#30363d',   // Hover states
           text: '#8b949e',    // Secondary text
         },
+      },
+      fontFamily: {
+        sans: ['Cascadia', 'Arial', 'sans-serif'],
       },
     },
   },

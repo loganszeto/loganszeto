@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --foreground-rgb: 201, 209, 217;
+    --background-rgb: 13, 17, 23;
+  }
+
+  body {
+    @apply bg-primary text-primary-text;
+    font-family: 'Cascadia', Arial, sans-serif;
+  }
+}
+
 @font-face {
   font-family: 'Cascadia';
   src: url('/loganszeto/fonts/CascadiaCode.ttf') format('truetype');
@@ -10,31 +22,12 @@
   font-display: swap;
 }
 
-:root {
-  --foreground-rgb: 201, 209, 217;
-  --background-rgb: 13, 17, 23;
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
-  font-family: 'Cascadia', Arial, sans-serif;
-}
-
-.editor-content {
-  @apply relative mt-12 px-6;
-  min-height: calc(100vh - 3rem);
-}
-
-/* Dark mode styles */
-@layer base {
-  body {
-    @apply bg-primary text-primary-text;
-  }
-}
-
-/* Navigation styles */
 @layer components {
+  .editor-content {
+    @apply relative mt-12 px-6;
+    min-height: calc(100vh - 3rem);
+  }
+
   .nav-link {
     @apply text-primary-text hover:text-primary-accent transition-colors duration-200;
   }
