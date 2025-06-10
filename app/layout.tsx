@@ -14,9 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body style={{ fontFamily: 'Cascadia, monospace' }} className="bg-[#16161d] text-gray-100">
+      <body>
         <Tabs />
-        <div className="editor-content p-6">
+        <div className="editor-content">
           {children}
         </div>
       </body>
