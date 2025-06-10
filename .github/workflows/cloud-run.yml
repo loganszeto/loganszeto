@@ -16,8 +16,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
-    env:
-      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,7 +31,10 @@ jobs:
         run: npm install
       
       - name: Build with Next.js
-        run: npm run build
+        run: |
+          touch .env.local
+          echo "MONGODB_URI=${{ secrets.MONGODB_URI }}" >> .env.local
+          npm run build:server
       
       - name: Google Auth
         uses: 'google-github-actions/auth@v2'
@@ -44,4 +46,6 @@ jobs:
         with:
           service: ${{ env.SERVICE_NAME }}
           region: ${{ env.REGION }}
-          source: . 
+          source: .
+          env_vars: |
+            MONGODB_URI=${{ secrets.MONGODB_URI }} 
