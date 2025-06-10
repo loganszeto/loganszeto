@@ -3,21 +3,14 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: #1f1f28;
-    --text-primary: #c8c093;
-    --text-muted: #7c7c7c;
-    --accent: #e6c384;
-  }
-
   body {
-    background-color: var(--background);
-    color: var(--text-primary);
+    background-color: #1f1f28;
+    color: #c8c093;
     font-family: 'Cascadia', Arial, sans-serif;
   }
 
   h1 {
-    color: var(--accent);
+    color: #e6c384;
   }
 }
 
@@ -31,7 +24,7 @@
 
 @layer components {
   .editor-content {
-    @apply relative mt-12 px-6;
+    @apply relative mt-12;
     min-height: calc(100vh - 3rem);
   }
 
@@ -60,7 +53,7 @@
   }
 
   pre {
-    @apply bg-secondary p-4 rounded-lg overflow-x-auto;
+    @apply bg-[#2a2a37] p-4 rounded-lg overflow-x-auto;
   }
 
   code {
