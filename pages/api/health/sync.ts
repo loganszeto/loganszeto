@@ -1,41 +1,71 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { connectToDatabase } from '@/lib/mongodb';
-import HealthData from '@/lib/models/HealthData';
+import { connectToDatabase } from '../../../lib/mongodb';
+import Cors from 'cors';
 
-export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: '50mb',
-    },
-  },
-};
+// Initialize the cors middleware
+const cors = Cors({
+  methods: ['GET', 'POST', 'OPTIONS'],
+  origin: '*',
+  optionsSuccessStatus: 200,
+});
+
+// Helper method to wait for a middleware to execute before continuing
+// And to throw an error when an error happens in a middleware
+function runMiddleware(req: NextApiRequest, res: NextApiResponse, fn: Function) {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result: any) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+      return resolve(result);
+    });
+  });
+}
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'OPTIONS') {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.setHeader('Access-Control-Max-Age', '86400');
-    res.status(200).end();
-    return;
-  }
-
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
   try {
-    await connectToDatabase();
-    const healthData = req.body;
+    // Run the CORS middleware
+    await runMiddleware(req, res, cors);
 
-    if (!Array.isArray(healthData)) {
-      return res.status(400).json({ error: 'Invalid data format' });
+    // Only allow POST and OPTIONS methods
+    if (req.method !== 'POST' && req.method !== 'OPTIONS') {
+      return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    const result = await HealthData.insertMany(healthData);
-    res.status(200).json({ success: true, count: result.length });
+    // Handle OPTIONS request
+    if (req.method === 'OPTIONS') {
+      return res.status(200).end();
+    }
+
+    // Connect to MongoDB
+    const { db } = await connectToDatabase();
+
+    // Get the data from the request body
+    const healthData = req.body;
+
+    // Validate the data
+    if (!Array.isArray(healthData)) {
+      return res.status(400).json({ error: 'Invalid data format. Expected an array.' });
+    }
+
+    // If the array is empty, return success without doing anything
+    if (healthData.length === 0) {
+      return res.status(200).json({ message: 'No data to process' });
+    }
+
+    // Insert the data into MongoDB
+    const result = await db.collection('health').insertMany(healthData);
+
+    // Return success response
+    return res.status(200).json({
+      message: 'Data synced successfully',
+      insertedCount: result.insertedCount,
+    });
   } catch (error) {
-    console.error('Error syncing health data:', error);
-    res.status(500).json({ error: 'Error syncing health data' });
+    console.error('Error in /api/health/sync:', error);
+    return res.status(500).json({
+      error: 'Internal server error',
+      message: error instanceof Error ? error.message : 'Unknown error occurred',
+    });
   }
 } 

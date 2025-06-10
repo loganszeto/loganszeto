@@ -54,7 +54,13 @@ const nextConfig = {
     cleanDistDir: true,
     skipTrailingSlashRedirect: true,
     skipMiddlewareUrlNormalize: true,
-  } : {}),
+    output: 'export',
+  } : {
+    output: 'standalone',
+    generateEtags: false,
+    poweredByHeader: false,
+    compress: true,
+  }),
 
   env: {
     MONGODB_URI: process.env.MONGODB_URI, // allows static injection if needed

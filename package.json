@@ -11,7 +11,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/cors": "^2.8.19",
     "@types/xml2js": "^0.4.14",
+    "cors": "^2.8.5",
     "mongodb": "^6.17.0",
     "mongoose": "^8.15.1",
     "next": "15.3.3",
