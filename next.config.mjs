@@ -25,22 +25,20 @@ const nextConfig = {
     ignoreDuringBuilds: true
   },
 
-  // CORS headers only for Cloud Run (not for static export)
-  ...(process.env.GITHUB_ACTIONS ? {} : {
-    async headers() {
-      return [
-        {
-          source: '/api/health/sync',
-          headers: [
-            { key: 'Access-Control-Allow-Origin', value: '*' },
-            { key: 'Access-Control-Allow-Methods', value: 'GET, POST, OPTIONS' },
-            { key: 'Access-Control-Allow-Headers', value: 'Content-Type, Authorization' },
-            { key: 'Access-Control-Max-Age', value: '86400' },
-          ],
-        },
-      ];
-    }
-  }),
+  // CORS headers for all environments
+  async headers() {
+    return [
+      {
+        source: '/api/health/sync',
+        headers: [
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+          { key: 'Access-Control-Allow-Methods', value: 'GET, POST, OPTIONS' },
+          { key: 'Access-Control-Allow-Headers', value: 'Content-Type, Authorization' },
+          { key: 'Access-Control-Max-Age', value: '86400' },
+        ],
+      },
+    ];
+  },
 
   experimental: {
     serverActions: {
@@ -56,10 +54,6 @@ const nextConfig = {
     cleanDistDir: true,
     skipTrailingSlashRedirect: true,
     skipMiddlewareUrlNormalize: true,
-    // Exclude API routes from static export
-    pageExtensions: ['tsx', 'ts', 'jsx', 'js'].filter(ext => 
-      !process.env.GITHUB_ACTIONS || !ext.startsWith('api/')
-    ),
   } : {}),
 
   env: {

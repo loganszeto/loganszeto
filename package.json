@@ -7,7 +7,7 @@
     "build": "next build",
     "build:static": "cross-env GITHUB_ACTIONS=true next build",
     "build:server": "next build",
-    "start": "next start",
+    "start": "node .next/standalone/server.js",
     "lint": "next lint"
   },
   "dependencies": {
