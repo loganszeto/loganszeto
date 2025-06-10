@@ -2,15 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --foreground-rgb: 200, 192, 147;
+  --background-rgb: 31, 31, 40;
+  --accent-rgb: 230, 195, 132;
+  --muted-rgb: 124, 124, 124;
+}
+
 @layer base {
   body {
-    background-color: #1f1f28;
-    color: #c8c093;
+    @apply bg-primary text-[#c8c093];
     font-family: 'Cascadia', Arial, sans-serif;
   }
 
   h1 {
-    color: #e6c384;
+    @apply text-accent;
   }
 }
 
@@ -29,7 +35,7 @@
   }
 
   .nav-link {
-    @apply text-[#7c7c7c] hover:text-[#e6c384] transition-colors duration-200;
+    @apply text-muted hover:text-accent transition-colors duration-200;
   }
 
   .main-container {
@@ -37,23 +43,23 @@
   }
 
   h1 {
-    @apply text-[#e6c384] text-4xl font-bold mb-4;
+    @apply text-accent text-4xl font-bold mb-4;
   }
 
   h2 {
-    @apply text-[#e6c384] text-2xl font-semibold mb-3;
+    @apply text-accent text-2xl font-semibold mb-3;
   }
 
   p {
-    @apply text-[#c8c093] mb-4;
+    @apply text-default mb-4;
   }
 
   a {
-    @apply text-[#7c7c7c] hover:text-[#e6c384] transition-colors duration-200;
+    @apply text-muted hover:text-accent transition-colors duration-200;
   }
 
   pre {
-    @apply bg-[#2a2a37] p-4 rounded-lg overflow-x-auto;
+    @apply bg-secondary p-4 rounded-lg overflow-x-auto;
   }
 
   code {
