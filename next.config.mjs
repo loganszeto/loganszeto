@@ -2,7 +2,7 @@
 // Trigger rebuild - Testing Cloud Run deployment with new service account
 const nextConfig = {
   // Output configuration based on the environment
-  output: process.env.GITHUB_ACTIONS ? 'export' : 'standalone',
+  output: 'export',
   
   // Base path for GitHub Pages (your repository name)
   basePath: process.env.GITHUB_ACTIONS ? '/loganszeto' : '',
