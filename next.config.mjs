@@ -74,15 +74,6 @@ const nextConfig = {
   env: {
     MONGODB_URI: process.env.MONGODB_URI, // allows static injection if needed
   },
-
-  // Exclude API routes from static export
-  exportPathMap: async function () {
-    return {
-      '/': { page: '/' },
-      '/posts': { page: '/posts' },
-      '/data': { page: '/data' }
-    };
-  }
 };
 
 export default nextConfig; 
