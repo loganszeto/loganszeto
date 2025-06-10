@@ -26,8 +26,8 @@ const config: Config = {
         'accent': '#e6c384',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
-        mono: ['Cascadia Code', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+        sans: ['Cascadia Code', 'monospace'],
+        mono: ['Cascadia Code', 'monospace'],
       },
     },
   },
