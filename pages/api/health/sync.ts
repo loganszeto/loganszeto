@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { connectToDatabase } from '../../../lib/mongodb';
+import { MongoServerSelectionError } from 'mongodb';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   // Set CORS headers
@@ -49,6 +50,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
   } catch (error) {
     console.error('Error in /api/health/sync:', error);
+
+    // Handle MongoDB connection errors specifically
+    if (error instanceof MongoServerSelectionError) {
+      res.status(503).json({
+        error: 'Database connection error',
+        message: 'Unable to connect to the database. Please try again later.',
+      });
+      return;
+    }
+
     res.status(500).json({
       error: 'Internal server error',
       message: error instanceof Error ? error.message : 'Unknown error occurred',

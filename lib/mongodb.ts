@@ -5,7 +5,15 @@ if (!process.env.MONGODB_URI) {
 }
 
 const uri = process.env.MONGODB_URI;
-const options = {};
+const options = {
+  connectTimeoutMS: 10000,
+  socketTimeoutMS: 10000,
+  serverSelectionTimeoutMS: 10000,
+  maxPoolSize: 10,
+  minPoolSize: 0,
+  maxIdleTimeMS: 30000,
+  waitQueueTimeoutMS: 10000,
+};
 
 let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
@@ -29,9 +37,14 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 export async function connectToDatabase() {
-  const client = await clientPromise;
-  const db = client.db('health-sync');
-  return { client, db };
+  try {
+    const client = await clientPromise;
+    const db = client.db('health-sync');
+    return { client, db };
+  } catch (error) {
+    console.error('MongoDB connection error:', error);
+    throw error;
+  }
 }
 
 // Export a promise that resolves to the MongoDB client
