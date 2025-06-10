@@ -1,2 +1,0 @@
-# Run health data sync every night at 2 AM
-0 2 * * * /usr/bin/python3 /Users/loganszeto/loganszeto/scripts/sync_health_data.py >> /Users/loganszeto/loganszeto/logs/health_sync.log 2>&1 

@@ -44,7 +44,10 @@ export default function HealthPage() {
 
   const fetchHealthData = async () => {
     try {
-      const response = await fetch('/api/health/sync');
+      const response = await fetch('https://loganszeto-660180661332.us-west2.run.app/api/health/sync');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const result = await response.json();
       setHealthData(result.data);
     } catch (err) {
