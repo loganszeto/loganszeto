@@ -13,7 +13,6 @@
   body {
     background-color: var(--background);
     color: var(--text-primary);
-    @apply bg-primary text-primary-text;
     font-family: 'Cascadia', Arial, sans-serif;
   }
 
