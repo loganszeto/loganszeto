@@ -31,10 +31,11 @@ jobs:
         run: npm install
       
       - name: Build website
-        run: npm run build
-        env:
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}
-          NEXT_PUBLIC_API_URL: "https://loganszeto-660180661332.us-west2.run.app"
+        run: |
+          touch .env.local
+          echo "MONGODB_URI=${{ secrets.MONGODB_URI }}" >> .env.local
+          echo "NEXT_PUBLIC_API_URL=https://loganszeto-660180661332.us-west2.run.app" >> .env.local
+          npm run build
       
       - name: Configure Pages
         uses: actions/configure-pages@v4

@@ -50,6 +50,16 @@ const nextConfig = {
     largePageDataBytes: 128 * 1024 * 1024, // 128MB
   },
 
+  // Exclude API routes during static export
+  ...(process.env.GITHUB_ACTIONS ? {
+    exportPathMap: async function() {
+      return {
+        '/': { page: '/' },
+        // Add other static pages here if needed
+      };
+    }
+  } : {}),
+
   env: {
     MONGODB_URI: process.env.MONGODB_URI, // allows static injection if needed
   },
