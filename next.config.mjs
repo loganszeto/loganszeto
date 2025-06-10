@@ -50,14 +50,12 @@ const nextConfig = {
     largePageDataBytes: 128 * 1024 * 1024, // 128MB
   },
 
-  // Exclude API routes during static export
+  // Skip API routes during static export
   ...(process.env.GITHUB_ACTIONS ? {
-    exportPathMap: async function() {
-      return {
-        '/': { page: '/' },
-        // Add other static pages here if needed
-      };
-    }
+    distDir: '.next',
+    cleanDistDir: true,
+    skipTrailingSlashRedirect: true,
+    skipMiddlewareUrlNormalize: true,
   } : {}),
 
   env: {
