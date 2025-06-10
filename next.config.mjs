@@ -49,6 +49,10 @@ const nextConfig = {
       sizeLimit: '10mb',
     },
   },
+
+  experimental: {
+    serverActions: true
+  }
 };
 
 export default nextConfig; 
