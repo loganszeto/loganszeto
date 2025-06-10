@@ -25,6 +25,15 @@ export async function OPTIONS() {
 
 export async function POST(req: NextRequest) {
   try {
+    // Skip DB operations during build time
+    if (!process.env.MONGODB_URI) {
+      console.warn("MONGODB_URI not defined — skipping DB work");
+      return NextResponse.json({ 
+        error: 'Database configuration not available',
+        details: 'MongoDB connection string is not configured'
+      }, { status: 503 });
+    }
+
     // Connect to MongoDB
     await connectToDatabase();
     

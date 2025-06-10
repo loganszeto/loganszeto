@@ -44,6 +44,10 @@ const nextConfig = {
     // Enable large payload support
     largePageDataBytes: 128 * 1024 * 1024, // 128MB
   },
+
+  env: {
+    MONGODB_URI: process.env.MONGODB_URI, // allows static injection if needed
+  },
 };
 
 export default nextConfig; 
