@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-// Trigger rebuild - Added MongoDB URI to GitHub secrets
+// Trigger rebuild - Testing Cloud Run deployment with new service account
 const nextConfig = {
   // This is the crucial line to add
   output: 'standalone',
