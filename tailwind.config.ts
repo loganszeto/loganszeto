@@ -15,7 +15,7 @@ const config: Config = {
         secondary: '#2a2a37', // Slightly lighter background
         accent: '#e6c384', // Your gold accent color
         'gray-custom': '#7c7c7c', // Your custom gray
-        'text-primary': '#c8c093', // Primary text color
+        'text-primary': '#c8c093', // Primary text color r
       },
       backgroundColor: {
         'page': '#1f1f28',
