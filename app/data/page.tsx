@@ -12,7 +12,7 @@ const projects: Project[] = [
     date: "2025-06-05",
     link: "/projects/recovery-loop"
   }
-  // Add more projects as they become available
+  // Add more projects as they become availables
 ];
 
 export default function Data() {
