@@ -10,11 +10,11 @@ export default function Home() {
           </div>
 
           <div className="text-gray-400 text-base sm:text-lg mb-1">
-            Student at UCI studying software engineering with a focus
+            Undergraduate @ UCI studying software engineering with a focus
           </div>
 
           <div className="text-gray-400 text-base sm:text-lg mb-4">
-            in data and AI alignment. Strength Training Enthusiast.
+            in data and AI alignment.
           </div>
         </div>
 
