@@ -8,11 +8,11 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "The Recovery Loop",
-    date: "2025-06-05",
-    link: "/projects/recovery-loop"
+    title: "Coming Soon",
+    date: "TBD",
+    link: undefined
   }
-  // Add more projects as they become availables
+  // Add more projects as they become available
 ];
 
 export default function Data() {
