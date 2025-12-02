@@ -17,16 +17,6 @@ export default function Home() {
             in data and AI alignment.
           </div>
         </div>
-
-        {/* Posts + Data Section */}
-        <div className="mt-0">
-          <h1 className="text-[#e6c384] text-2xl sm:text-3xl mb-6">posts</h1>
-          <div className="text-gray-400 text-base sm:text-lg mb-4">. . .</div>
-          <div className="text-gray-400 text-base sm:text-lg mb-4">. . .</div>
-          <h1 className="text-[#e6c384] text-2xl sm:text-3xl mt-2 mb-6">data</h1>
-          <div className="text-gray-400 text-base sm:text-lg mb-4">. . .</div>
-          <div className="text-gray-400 text-base sm:text-lg mb-4">. . .</div>
-        </div>
       </div>
     </div>
   );

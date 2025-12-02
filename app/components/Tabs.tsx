@@ -10,7 +10,7 @@ interface Tab {
 
 const tabs: Tab[] = [
   { name: 'home', path: '/' },
-  { name: 'posts', path: '/posts' },
+  { name: 'experience', path: '/experience' },
   { name: 'data', path: '/data' },
 ];
 

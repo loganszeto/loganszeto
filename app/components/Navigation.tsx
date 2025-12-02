@@ -25,7 +25,7 @@ export default function Navigation() {
       <div className="px-0">
         <div className="flex items-center">
           <NavLink href="/">Home</NavLink>
-          <NavLink href="/posts">Posts</NavLink>
+          <NavLink href="/experience">Experience</NavLink>
           <NavLink href="/data">Data</NavLink>
         </div>
       </div>
