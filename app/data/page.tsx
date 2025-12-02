@@ -19,7 +19,7 @@ export default function Data() {
   return (
     <div className="flex flex-col min-h-screen px-4 sm:px-6 lg:px-8 pt-10">
       <div className="max-w-7xl mx-auto w-full">
-        <h1 className="text-[#e6c384] text-4xl sm:text-5xl mb-12">data</h1>
+        <h1 className="text-[#e6c384] text-4xl sm:text-5xl mb-12">Data</h1>
         <div className="space-y-6">
           {projects.map((project, index) => (
             <div key={index}>
