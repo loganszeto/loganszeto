@@ -8,9 +8,14 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Coming Soon",
-    date: "TBD",
-    link: undefined
+    title: "Health Auto Export",
+    date: "2025",
+    link: "/projects/health-auto-export"
+  },
+  {
+    title: "Vending Pokemon",
+    date: "2025",
+    link: "/projects/vending-pokemon"
   }
   // Add more projects as they become available
 ];

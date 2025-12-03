@@ -27,15 +27,14 @@ export default function Experience() {
           <div className="space-y-8">
             {research.map((item, index) => (
               <div key={index} id={item.id} className="border-l-2 border-[#363646] pl-6 scroll-mt-20">
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
-                  <div>
-                    <h3 className="text-[#e6c384] text-xl mb-1">{item.title}</h3>
-                    <p className="text-[#7c7c7c] text-sm">{item.organization}</p>
-                    <p className="text-[#7c7c7c] text-sm">{item.location}</p>
-                  </div>
-                  <span className="text-[#7c7c7c] text-sm mt-2 sm:mt-0">{item.date}</span>
+                <h3 className="text-[#e6c384] text-xl mb-1">{item.title}</h3>
+                <div className="flex justify-between items-center mb-4">
+                  <p className="text-[#7c7c7c] text-sm">
+                    {item.organization} | {item.location}
+                  </p>
+                  <span className="text-[#7c7c7c] text-sm">{item.date}</span>
                 </div>
-                <p className="text-gray-400 text-sm mt-4 leading-relaxed">{item.description}</p>
+                <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>
@@ -47,15 +46,14 @@ export default function Experience() {
           <div className="space-y-8">
             {internships.map((item, index) => (
               <div key={index} id={item.id} className="border-l-2 border-[#363646] pl-6 scroll-mt-20">
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
-                  <div>
-                    <h3 className="text-[#e6c384] text-xl mb-1">{item.title}</h3>
-                    <p className="text-[#7c7c7c] text-sm">{item.organization}</p>
-                    <p className="text-[#7c7c7c] text-sm">{item.location}</p>
-                  </div>
-                  <span className="text-[#7c7c7c] text-sm mt-2 sm:mt-0">{item.date}</span>
+                <h3 className="text-[#e6c384] text-xl mb-1">{item.title}</h3>
+                <div className="flex justify-between items-center mb-4">
+                  <p className="text-[#7c7c7c] text-sm">
+                    {item.organization} | {item.location}
+                  </p>
+                  <span className="text-[#7c7c7c] text-sm">{item.date}</span>
                 </div>
-                <p className="text-gray-400 text-sm mt-4 leading-relaxed">{item.description}</p>
+                <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>
@@ -67,15 +65,14 @@ export default function Experience() {
           <div className="space-y-8">
             {teaching.map((item, index) => (
               <div key={index} id={item.id} className="border-l-2 border-[#363646] pl-6 scroll-mt-20">
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
-                  <div>
-                    <h3 className="text-[#e6c384] text-xl mb-1">{item.title}</h3>
-                    <p className="text-[#7c7c7c] text-sm">{item.organization}</p>
-                    <p className="text-[#7c7c7c] text-sm">{item.location}</p>
-                  </div>
-                  <span className="text-[#7c7c7c] text-sm mt-2 sm:mt-0">{item.date}</span>
+                <h3 className="text-[#e6c384] text-xl mb-1">{item.title}</h3>
+                <div className="flex justify-between items-center mb-4">
+                  <p className="text-[#7c7c7c] text-sm">
+                    {item.organization} | {item.location}
+                  </p>
+                  <span className="text-[#7c7c7c] text-sm">{item.date}</span>
                 </div>
-                <p className="text-gray-400 text-sm mt-4 leading-relaxed">{item.description}</p>
+                <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>

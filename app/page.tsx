@@ -67,7 +67,7 @@ export default function Home() {
                   href={`/experience#${item.id}`}
                   className="text-gray-400 hover:text-[#e6c384] transition-colors text-sm sm:text-base"
                 >
-                  {item.organization}
+                  {item.id === 'teaching-1' ? 'Informatics 115' : item.organization}
                 </Link>
                 <span className="text-[#7c7c7c] text-xs sm:text-sm">{item.date}</span>
               </div>
