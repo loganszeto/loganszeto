@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { projects } from '@/lib/projectsData';
-import HealthDashboard from '@/app/components/health/HealthDashboard';
 
 export default function HealthAutoExport() {
   const project = projects.find(p => p.slug === 'health-auto-export');
@@ -56,44 +55,20 @@ export default function HealthAutoExport() {
           )}
         </div>
 
-        {/* Setup Instructions */}
-        <div className="bg-[#1f1f28] border border-[#363646] rounded-lg p-8 mb-8">
-          <h2 className="text-[#e6c384] text-2xl mb-4">Setup Instructions</h2>
-          <div className="space-y-4 text-gray-400 text-sm">
-            <div>
-              <p className="mb-2 font-semibold text-[#e6c384]">1. Install Health Auto Export App</p>
-              <p>Download the <a href="https://www.healthyapps.dev/" target="_blank" rel="noopener noreferrer" className="text-[#e6c384] hover:underline">Health Auto Export</a> app on your iPhone from the App Store.</p>
-            </div>
-            <div>
-              <p className="mb-2 font-semibold text-[#e6c384]">2. Configure API Export</p>
-              <p className="mb-2">In the Health Auto Export app:</p>
-              <ul className="list-disc list-inside space-y-1 ml-4 text-[#7c7c7c]">
-                <li>Open the app and go to <strong>Settings</strong> → <strong>API Export</strong></li>
-                <li>Toggle <strong>Enable API Export</strong> to ON</li>
-                <li>Set <strong>Endpoint URL</strong> to: <code className="bg-[#16161d] px-2 py-1 rounded text-[#e6c384]">https://loganszeto.com/api/health/sync</code></li>
-                <li>Set <strong>Format</strong> to <strong>JSON</strong></li>
-                <li>Set <strong>Sync Frequency</strong> to <strong>Daily</strong> (recommended)</li>
-                <li>Set <strong>Time Range</strong> to <strong>Last 24 hours</strong></li>
-                <li>Tap <strong>Test Connection</strong> to verify it works</li>
-                <li>Tap <strong>Sync Now</strong> to send your first batch of data</li>
-              </ul>
-            </div>
-            <div>
-              <p className="mb-2 font-semibold text-[#e6c384]">3. View Dashboard</p>
-              <p>Once data is synced, it will appear in the dashboard below. The app will automatically sync daily.</p>
-            </div>
-            <div className="bg-[#16161d] border border-[#363646] rounded p-4 mt-4">
-              <p className="text-[#7c7c7c] text-xs">
-                📖 For detailed setup instructions, see the <a href="https://www.healthyapps.dev/blog/how-to-connect-to-apple-health-server" target="_blank" rel="noopener noreferrer" className="text-[#e6c384] hover:underline">Health Auto Export setup guide</a>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Dashboard */}
         <div className="bg-[#1f1f28] border border-[#363646] rounded-lg p-8">
-          <h2 className="text-[#e6c384] text-2xl mb-6">Health Dashboard</h2>
-          <HealthDashboard />
+          <p className="text-gray-400 mb-4">
+            This project is hosted separately. Click the link below to view the live dashboard.
+          </p>
+          {project?.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-[#e6c384] text-[#1f1f28] px-6 py-3 rounded hover:bg-[#d4b373] transition-colors font-semibold"
+            >
+              View Live Dashboard →
+            </a>
+          )}
         </div>
       </div>
     </div>

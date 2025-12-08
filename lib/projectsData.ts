@@ -13,8 +13,8 @@ export const projects: Project[] = [
     title: 'Health Auto Export',
     description: 'A dashboard visualizing Apple Watch health data including sleep, activity, and recovery metrics.',
     tech: ['Next.js', 'React', 'Chart.js', 'Apple HealthKit'],
-    githubUrl: 'https://github.com/loganszeto/health-auto-export', // Update when repo is created
-    // liveUrl: 'https://health-auto-export.vercel.app', // Optional: add when deployed
+    githubUrl: 'https://github.com/loganszeto/health-auto-export',
+    liveUrl: 'https://health-auto-export.vercel.app', // Update this after Vercel deployment
   },
   {
     slug: 'vending-pokemon',

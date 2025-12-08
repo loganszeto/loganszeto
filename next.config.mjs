@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // output: 'export', // Commented out for dev server - uncomment for static export builds
+  output: 'export', // Enable static export for GitHub Pages
   
   reactStrictMode: true,
 

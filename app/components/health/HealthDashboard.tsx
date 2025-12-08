@@ -18,7 +18,7 @@ export default function HealthDashboard() {
 
   const fetchHealthData = async () => {
     try {
-      const response = await fetch('/api/health/data?limit=1&days=30');
+      const response = await fetch('https://health-auto-export.vercel.app/api/data?limit=1&days=30');
       if (!response.ok) {
         throw new Error('Failed to fetch health data');
       }
