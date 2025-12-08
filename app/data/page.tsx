@@ -10,7 +10,7 @@ const projects: Project[] = [
   {
     title: "Health Auto Export",
     date: "2025",
-    link: "/projects/health-auto-export"
+    link: "https://health-auto-export.vercel.app" // Update after Vercel deployment
   },
   {
     title: "Vending Pokemon",
@@ -34,12 +34,14 @@ export default function Data() {
               </div>
               {project.link && (
                 <div className="mt-2">
-                  <Link 
+                  <a 
                     href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-[#7c7c7c] hover:text-[#e6c384] transition-colors text-sm"
                   >
                     learn more
-                  </Link>
+                  </a>
                 </div>
               )}
             </div>
