@@ -36,16 +36,18 @@ export default async function Page({ params }: { params: { slug: string } }) {
   await Promise.resolve();
 
   return (
-    <main className="container mx-auto px-4 py-12">
-      <h1 className="text-5xl font-extrabold mb-4">{project.title}</h1>
-      <p className="text-xl text-gray-400 mb-8">{project.description}</p>
+    <div className="flex flex-col min-h-screen px-6 sm:px-8 lg:px-12 pt-20 pb-20">
+      <div className="max-w-4xl w-full">
+        <h1 className="text-[#c8c8c8] text-5xl sm:text-6xl mb-4 font-normal">{project.title}</h1>
+        <p className="text-[#969696] text-base mb-8">{project.description}</p>
 
-      <div className="bg-gray-800 p-8 rounded-lg min-h-[400px]">
-        <h2 className="text-2xl font-bold text-white">Project Details & Visualizations</h2>
-        <p className="text-gray-300 mt-4">
-          [The full project details will be built out right here...]
-        </p>
+        <div className="border-t border-[#2a2a2a] pt-8">
+          <h2 className="text-[#c8c8c8] text-lg mb-4">Project Details</h2>
+          <p className="text-[#969696] text-sm">
+            [The full project details will be built out right here...]
+          </p>
+        </div>
       </div>
-    </main>
+    </div>
   );
 } 

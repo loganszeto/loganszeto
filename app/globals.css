@@ -3,39 +3,38 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 200, 192, 147;
-  --background-rgb: 31, 31, 40;
-  --accent-rgb: 230, 195, 132;
-  --muted-rgb: 124, 124, 124;
+  --foreground-rgb: 200, 200, 200;
+  --background-rgb: 20, 20, 20;
+  --muted-rgb: 150, 150, 150;
 }
 
 @layer base {
   body {
-    @apply bg-primary text-[#c8c093];
-    font-family: 'Cascadia', Arial, sans-serif;
+    @apply bg-[#141414] text-[#c8c8c8];
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1 {
-    @apply text-accent;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    @apply text-[#c8c8c8];
   }
-}
 
-@font-face {
-  font-family: 'Cascadia';
-  src: url('/fonts/CascadiaCode.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+  h2 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    @apply text-[#c8c8c8];
+  }
 }
 
 @layer components {
   .editor-content {
-    @apply relative mt-12;
+    @apply relative;
     min-height: calc(100vh - 3rem);
   }
 
   .nav-link {
-    @apply text-muted hover:text-accent transition-colors duration-200;
+    @apply text-[#c8c8c8] hover:text-[#c8c8c8] transition-colors duration-200;
   }
 
   .main-container {
@@ -43,23 +42,25 @@
   }
 
   h1 {
-    @apply text-accent text-4xl font-bold mb-4;
+    @apply text-[#c8c8c8] text-4xl font-normal mb-4;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   }
 
   h2 {
-    @apply text-accent text-2xl font-semibold mb-3;
+    @apply text-[#c8c8c8] text-2xl font-normal mb-3;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   }
 
   p {
-    @apply text-default mb-4;
+    @apply text-[#c8c8c8] mb-4;
   }
 
   a {
-    @apply text-muted hover:text-accent transition-colors duration-200;
+    @apply text-[#c8c8c8] hover:text-[#c8c8c8] transition-colors duration-200;
   }
 
   pre {
-    @apply bg-secondary p-4 rounded-lg overflow-x-auto;
+    @apply bg-[#1a1a1a] p-4 rounded-lg overflow-x-auto;
   }
 
   code {
