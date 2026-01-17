@@ -19,7 +19,7 @@ export default function Home() {
               <div key={item.id} className="flex justify-between items-center">
                 <Link 
                   href={`/experience/${item.slug}`}
-                  className="text-[#c8c8c8] hover:text-[#c8c8c8] transition-colors text-sm"
+                  className="text-[#c8c8c8] hover:opacity-80 transition-opacity text-sm"
                 >
                   {item.organization}
                 </Link>
@@ -37,7 +37,7 @@ export default function Home() {
               <div key={item.id} className="flex justify-between items-center">
                 <Link 
                   href={`/experience/${item.slug}`}
-                  className="text-[#c8c8c8] hover:text-[#c8c8c8] transition-colors text-sm"
+                  className="text-[#c8c8c8] hover:opacity-80 transition-opacity text-sm"
                 >
                   {item.organization}
                 </Link>
@@ -55,7 +55,7 @@ export default function Home() {
               <div key={item.id} className="flex justify-between items-center">
                 <Link 
                   href={`/experience/${item.slug}`}
-                  className="text-[#c8c8c8] hover:text-[#c8c8c8] transition-colors text-sm"
+                  className="text-[#c8c8c8] hover:opacity-80 transition-opacity text-sm"
                 >
                   {item.id === 'teaching-1' ? 'INF 115' : item.organization}
                 </Link>

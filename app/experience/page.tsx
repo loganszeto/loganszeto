@@ -28,7 +28,7 @@ export default function Experience() {
           <div className="space-y-1">
             {research.map((item) => (
               <div key={item.id} id={item.id} className="flex justify-between items-center scroll-mt-20">
-                <Link href={`/experience/${item.slug}`} className="text-[#c8c8c8] hover:text-[#c8c8c8] transition-colors text-sm">
+                <Link href={`/experience/${item.slug}`} className="text-[#c8c8c8] hover:opacity-80 transition-opacity text-sm">
                   {item.organization}
                 </Link>
                 <span className="text-[#969696] text-sm">{item.date}</span>
@@ -43,7 +43,7 @@ export default function Experience() {
           <div className="space-y-1">
             {internships.map((item) => (
               <div key={item.id} id={item.id} className="flex justify-between items-center scroll-mt-20">
-                <Link href={`/experience/${item.slug}`} className="text-[#c8c8c8] hover:text-[#c8c8c8] transition-colors text-sm">
+                <Link href={`/experience/${item.slug}`} className="text-[#c8c8c8] hover:opacity-80 transition-opacity text-sm">
                   {item.organization}
                 </Link>
                 <span className="text-[#969696] text-sm">{item.date}</span>
@@ -58,7 +58,7 @@ export default function Experience() {
           <div className="space-y-1">
             {teaching.map((item) => (
               <div key={item.id} id={item.id} className="flex justify-between items-center scroll-mt-20">
-                <Link href={`/experience/${item.slug}`} className="text-[#c8c8c8] hover:text-[#c8c8c8] transition-colors text-sm">
+                <Link href={`/experience/${item.slug}`} className="text-[#c8c8c8] hover:opacity-80 transition-opacity text-sm">
                   {item.id === 'teaching-1' ? 'INF 115' : item.organization}
                 </Link>
                 <span className="text-[#969696] text-sm">{item.date}</span>

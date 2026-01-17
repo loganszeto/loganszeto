@@ -16,8 +16,8 @@ export default function VendingPokemon() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen px-6 sm:px-8 lg:px-12 pt-20 pb-20">
-      <div className="max-w-4xl w-full">
+    <div className="flex flex-col min-h-screen px-6 sm:px-8 lg:px-12 pt-32 pb-20">
+      <div className="max-w-2xl w-full mx-auto">
         <Link 
           href="/data" 
           className="text-[#969696] hover:text-[#c8c8c8] transition-colors mb-6 inline-block text-sm"
