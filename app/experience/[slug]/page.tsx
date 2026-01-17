@@ -3,15 +3,16 @@ import { notFound } from 'next/navigation';
 import { getExperienceBySlug, getAllExperiences } from '@/lib/experienceData';
 
 // Generate static params for all experience items
-export function generateStaticParams() {
+export async function generateStaticParams() {
   const experiences = getAllExperiences();
   return experiences.map((experience) => ({
     slug: experience.slug,
   }));
 }
 
-export default function ExperienceDetail({ params }: { params: { slug: string } }) {
-  const experience = getExperienceBySlug(params.slug);
+export default async function ExperienceDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const experience = getExperienceBySlug(slug);
 
   if (!experience) {
     notFound();
