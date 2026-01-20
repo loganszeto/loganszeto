@@ -14,7 +14,8 @@ const projects: Project[] = [
   },
   {
     title: "ZotHacks",
-    date: "2023"
+    date: "2023",
+    link: "/projects/zothacks"
   }
 ];
 

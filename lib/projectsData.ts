@@ -9,6 +9,13 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: 'zothacks',
+    title: 'ZotWee',
+    description: 'A campus restroom finder that maps nearby gender-neutral bathrooms and routes users to the closest option.',
+    tech: ['Next.js', 'React', 'Google Maps API', 'Google Directions API'],
+    liveUrl: 'https://zot-wee.vercel.app/',
+  },
+  {
     slug: 'health-auto-export',
     title: 'Health Auto Export',
     description: 'A dashboard visualizing Apple Watch health data including sleep, activity, and recovery metrics.',
