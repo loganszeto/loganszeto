@@ -40,7 +40,6 @@ export default function ZotHacksPage() {
 
         <div className="border-t border-[#2a2a2a] pt-8">
           <div className="mt-2">
-            <h2 className="text-[#c8c8c8] text-lg mb-4 font-normal">Product Screens</h2>
             <div className="relative">
               <div className="overflow-hidden rounded-lg border border-[#2a2a2a] bg-[#1a1a1a]">
                 <img
