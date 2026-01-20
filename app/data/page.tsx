@@ -8,14 +8,18 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Health Auto Export",
+    title: "Apple Watch Data",
     date: "2025",
     link: "https://health-auto-export.vercel.app"
   },
   {
-    title: "Vending Pokemon",
+    title: "Pokemon Vending",
     date: "2025",
     link: "/projects/vending-pokemon"
+  },
+  {
+    title: "ZotHacks",
+    date: "2023"
   }
 ];
 
@@ -24,25 +28,31 @@ export default function Data() {
     <div className="flex flex-col min-h-screen px-6 sm:px-8 lg:px-12 pt-32 pb-20">
       <div className="max-w-2xl w-full mx-auto">
         <h1 className="text-[#c8c8c8] text-5xl sm:text-6xl mb-12 font-normal">Data</h1>
-        <div className="space-y-4">
+        <div className="space-y-1">
           {projects.map((project, index) => (
-            <div key={index}>
-              <div className="flex justify-between items-center">
-                <h2 className="text-[#c8c8c8] text-base">{project.title}</h2>
-                <span className="text-[#969696] text-sm">{project.date}</span>
-              </div>
-              {project.link && (
-                <div className="mt-1">
-                  <a 
+            <div key={index} className="flex justify-between items-center">
+              {project.link ? (
+                project.link.startsWith('http') ? (
+                  <a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#969696] hover:text-[#c8c8c8] transition-colors text-sm"
+                    className="text-[#c8c8c8] hover:opacity-80 transition-opacity text-sm"
                   >
-                    learn more
+                    {project.title}
                   </a>
-                </div>
+                ) : (
+                  <Link
+                    href={project.link}
+                    className="text-[#c8c8c8] hover:opacity-80 transition-opacity text-sm"
+                  >
+                    {project.title}
+                  </Link>
+                )
+              ) : (
+                <h2 className="text-[#c8c8c8] text-sm">{project.title}</h2>
               )}
+              <span className="text-[#969696] text-sm">{project.date}</span>
             </div>
           ))}
         </div>
