@@ -13,11 +13,6 @@ const projects: Project[] = [
     link: "https://health-auto-export.vercel.app"
   },
   {
-    title: "Pokemon Vending",
-    date: "2025",
-    link: "/projects/vending-pokemon"
-  },
-  {
     title: "ZotHacks",
     date: "2023"
   }

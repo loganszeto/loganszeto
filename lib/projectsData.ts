@@ -16,12 +16,4 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/loganszeto/health-auto-export',
     liveUrl: 'https://health-auto-export.vercel.app', // Update this after Vercel deployment
   },
-  {
-    slug: 'vending-pokemon',
-    title: 'Vending Pokemon',
-    description: 'Historical price tracking and calculator for Pokemon TCG cards using TCGPlayer and eBay APIs.',
-    tech: ['Next.js', 'React', 'TCGPlayer API', 'eBay API'],
-    githubUrl: 'https://github.com/loganszeto/vending-pokemon', // Update when repo is created
-    // liveUrl: 'https://vending-pokemon.vercel.app', // Optional: add when deployed
-  },
 ]; 
