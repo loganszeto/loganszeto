@@ -6,7 +6,7 @@ export default function Home() {
   const portraits = [
     {
       src: '/placeholders/travel-1.png',
-      location: 'Bainbridge Island, Seattle',
+      location: 'Bainbridge Island, Washington',
     },
     {
       src: '/placeholders/travel-2.png',
