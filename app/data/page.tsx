@@ -25,7 +25,7 @@ export default function Data() {
       <div className="max-w-2xl w-full mx-auto">
         <h1 className="text-[#c8c8c8] text-5xl sm:text-6xl mb-4 font-normal">Data</h1>
         <div className="border-t border-[#2a2a2a] pt-8">
-          <div className="space-y-1">
+          <div className="space-y-2">
             {projects.map((project, index) => (
               <div key={index} className="flex justify-between items-center">
                 {project.link ? (

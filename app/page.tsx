@@ -1,67 +1,67 @@
-import Link from 'next/link';
-import { research, internships, teaching } from '@/lib/experienceData';
+'use client';
+
+import { useEffect, useState } from 'react';
 
 export default function Home() {
+  const portraits = [
+    {
+      src: '/placeholders/travel-1.png',
+      location: 'Bainbridge Island, Seattle',
+    },
+    {
+      src: '/placeholders/travel-2.png',
+      location: 'Carlsbad Flower Field, California',
+    },
+    {
+      src: '/placeholders/travel-3.png',
+      location: 'Gum Wall, Seattle',
+    },
+    {
+      src: '/placeholders/travel-4.png',
+      location: 'Huntington Library, California',
+    },
+    {
+      src: '/placeholders/travel-5.png',
+      location: 'Sacramento, California',
+    },
+    {
+      src: '/placeholders/travel-6.png',
+      location: 'Shibuya, Japan',
+    },
+  ];
+
+  const [portraitIndex, setPortraitIndex] = useState(0);
+
+  useEffect(() => {
+    setPortraitIndex(Math.floor(Math.random() * portraits.length));
+  }, [portraits.length]);
+
   return (
-    <div className="flex flex-col min-h-screen px-6 sm:px-8 lg:px-12 pt-32 pb-20">
+    <div className="flex flex-col min-h-screen px-6 sm:px-8 lg:px-12 py-24 justify-center">
       <div className="max-w-2xl w-full mx-auto">
-        <h1 className="text-[#c8c8c8] text-5xl sm:text-6xl mb-4 font-normal">Logan Szeto</h1>
-
-        <div className="text-[#969696] text-base mb-12">
-          Undergraduate @ UCI studying software engineering with a focus in data and AI alignment.
-        </div>
-
-        {/* Research Section */}
-        <div className="mb-10">
-          <h2 className="text-[#c8c8c8] text-xl mb-4 font-normal">Research</h2>
-          <div className="space-y-1">
-            {research.map((item) => (
-              <div key={item.id} className="flex justify-between items-center">
-                <Link 
-                  href={`/experience/${item.slug}`}
-                  className="text-[#c8c8c8] hover:opacity-80 transition-opacity text-sm"
-                >
-                  {item.organization}
-                </Link>
-                <span className="text-[#969696] text-sm">{item.date}</span>
-              </div>
-            ))}
+        <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-start">
+          <div className="w-full md:w-[240px]">
+            <div className="aspect-[3/4] w-full overflow-hidden rounded-lg border border-[#2a2a2a] bg-[#1a1a1a]">
+              <img
+                src={portraits[portraitIndex].src}
+                alt={portraits[portraitIndex].location}
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="mt-3 text-[#969696] text-xs text-center">
+              {portraits[portraitIndex].location}
+            </div>
           </div>
-        </div>
 
-        {/* Internships Section */}
-        <div className="mb-10">
-          <h2 className="text-[#c8c8c8] text-xl mb-4 font-normal">Internships</h2>
-          <div className="space-y-1">
-            {internships.map((item) => (
-              <div key={item.id} className="flex justify-between items-center">
-                <Link 
-                  href={`/experience/${item.slug}`}
-                  className="text-[#c8c8c8] hover:opacity-80 transition-opacity text-sm"
-                >
-                  {item.organization}
-                </Link>
-                <span className="text-[#969696] text-sm">{item.date}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Teaching Section */}
-        <div className="mb-10">
-          <h2 className="text-[#c8c8c8] text-xl mb-4 font-normal">Teaching</h2>
-          <div className="space-y-1">
-            {teaching.map((item) => (
-              <div key={item.id} className="flex justify-between items-center">
-                <Link 
-                  href={`/experience/${item.slug}`}
-                  className="text-[#c8c8c8] hover:opacity-80 transition-opacity text-sm"
-                >
-                  {item.id === 'teaching-1' ? 'INF 115' : item.organization}
-                </Link>
-                <span className="text-[#969696] text-sm">{item.date}</span>
-              </div>
-            ))}
+          <div className="flex-1">
+            <h1 className="text-[#c8c8c8] text-5xl sm:text-6xl mb-4 font-normal">Logan Szeto</h1>
+            <p className="text-[#969696] text-base leading-relaxed max-w-xl">
+              I’m a Software Engineering student at UC Irvine who likes building practical tools
+              that help people understand what their software and AI systems are actually doing.
+              Most of my work revolves around turning complex data and model outputs into something
+              measurable, transparent, and easy to trust. Outside of school and projects, I enjoy
+              traveling and staying active by playing pickleball.
+            </p>
           </div>
         </div>
       </div>
