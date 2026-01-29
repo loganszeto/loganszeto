@@ -264,7 +264,7 @@ export default function VulnkvDemo() {
           <span className="hidden sm:inline">•</span>
           <span className="hidden sm:inline">Endpoint: {wsUrl}</span>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2 text-xs">
           <button
             type="button"
             onClick={connect}
@@ -278,6 +278,38 @@ export default function VulnkvDemo() {
             className="px-2 py-1 border border-[#2a2a2a] text-[#c8c8c8] hover:text-white transition-colors"
           >
             Clear Output
+          </button>
+          <button
+            type="button"
+            onClick={loadCveSample}
+            disabled={busy}
+            className="px-2 py-1 border border-[#2a2a2a] text-[#c8c8c8] hover:text-white transition-colors disabled:opacity-50"
+          >
+            Load CVE Sample
+          </button>
+          <button
+            type="button"
+            onClick={simulateRestart}
+            disabled={busy}
+            className="px-2 py-1 border border-[#2a2a2a] text-[#c8c8c8] hover:text-white transition-colors disabled:opacity-50"
+          >
+            Server Restart
+          </button>
+          <button
+            type="button"
+            onClick={clearData}
+            disabled={busy}
+            className="px-2 py-1 border border-[#2a2a2a] text-[#c8c8c8] hover:text-white transition-colors disabled:opacity-50"
+          >
+            Clear Data
+          </button>
+          <button
+            type="button"
+            onClick={runBenchmark}
+            disabled={busy}
+            className="px-2 py-1 border border-[#2a2a2a] text-[#c8c8c8] hover:text-white transition-colors disabled:opacity-50"
+          >
+            Run Mini Benchmark
           </button>
         </div>
       </div>
@@ -310,40 +342,6 @@ export default function VulnkvDemo() {
           </form>
         </div>
 
-        <div className="grid gap-2 text-sm grid-cols-4">
-          <button
-            type="button"
-            onClick={loadCveSample}
-            disabled={busy}
-            className="w-full px-3 py-2 border border-[#2a2a2a] text-[#c8c8c8] hover:text-white transition-colors disabled:opacity-50"
-          >
-            Load CVE Sample
-          </button>
-          <button
-            type="button"
-            onClick={simulateRestart}
-            disabled={busy}
-            className="w-full px-3 py-2 border border-[#2a2a2a] text-[#c8c8c8] hover:text-white transition-colors disabled:opacity-50"
-          >
-            Server Restart
-          </button>
-          <button
-            type="button"
-            onClick={clearData}
-            disabled={busy}
-            className="w-full px-3 py-2 border border-[#2a2a2a] text-[#c8c8c8] hover:text-white transition-colors disabled:opacity-50"
-          >
-            Clear Data
-          </button>
-          <button
-            type="button"
-            onClick={runBenchmark}
-            disabled={busy}
-            className="w-full px-3 py-2 border border-[#2a2a2a] text-[#c8c8c8] hover:text-white transition-colors disabled:opacity-50"
-          >
-            Run Mini Benchmark
-          </button>
-        </div>
       </div>
 
       <p className="text-xs text-[#6f6f6f]">
