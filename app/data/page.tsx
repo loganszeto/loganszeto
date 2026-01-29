@@ -8,6 +8,11 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "Key Value Store",
+    date: "2025",
+    link: "/data/vulnkv"
+  },
+  {
     title: "Apple Watch Data",
     date: "2025",
     link: "https://health-auto-export.vercel.app"
