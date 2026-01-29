@@ -282,7 +282,7 @@ export default function VulnkvDemo() {
         </div>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_220px]">
+      <div className="space-y-3">
         <div className="rounded-lg border border-[#2a2a2a] bg-black/40">
           <div className="flex items-center justify-between border-b border-[#2a2a2a] px-3 py-2 text-xs text-[#969696]">
             <span className="uppercase tracking-wide">Interactive Terminal</span>
@@ -310,14 +310,14 @@ export default function VulnkvDemo() {
           </form>
         </div>
 
-        <div className="space-y-2 text-sm">
+        <div className="grid gap-2 text-sm grid-cols-4">
           <button
             type="button"
             onClick={loadCveSample}
             disabled={busy}
             className="w-full px-3 py-2 border border-[#2a2a2a] text-[#c8c8c8] hover:text-white transition-colors disabled:opacity-50"
           >
-            Load CVE sample data
+            Load CVE Sample
           </button>
           <button
             type="button"
@@ -325,7 +325,7 @@ export default function VulnkvDemo() {
             disabled={busy}
             className="w-full px-3 py-2 border border-[#2a2a2a] text-[#c8c8c8] hover:text-white transition-colors disabled:opacity-50"
           >
-            Simulate server restart
+            Server Restart
           </button>
           <button
             type="button"
@@ -333,7 +333,7 @@ export default function VulnkvDemo() {
             disabled={busy}
             className="w-full px-3 py-2 border border-[#2a2a2a] text-[#c8c8c8] hover:text-white transition-colors disabled:opacity-50"
           >
-            Clear data
+            Clear Data
           </button>
           <button
             type="button"
@@ -341,7 +341,7 @@ export default function VulnkvDemo() {
             disabled={busy}
             className="w-full px-3 py-2 border border-[#2a2a2a] text-[#c8c8c8] hover:text-white transition-colors disabled:opacity-50"
           >
-            Run mini benchmark
+            Run Mini Benchmark
           </button>
         </div>
       </div>
@@ -351,6 +351,7 @@ export default function VulnkvDemo() {
         <span className="text-[#c8c8c8]"> DEL key</span>, <span className="text-[#c8c8c8]">EXPIRE key 10</span>,
         <span className="text-[#c8c8c8]"> KEYS prefix*</span>, <span className="text-[#c8c8c8]">STATS</span>
       </p>
+
     </div>
   );
 }

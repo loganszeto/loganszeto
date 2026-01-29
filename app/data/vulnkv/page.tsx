@@ -13,16 +13,7 @@ export default function VulnkvDataPage() {
             A persistent, Redis-lite key-value store built from scratch in Go with a concurrent TCP server, WAL-backed crash
             recovery, TTL support, and a live interactive demo.
           </p>
-          <div className="flex flex-wrap gap-3">
-            <a
-              href="https://github.com/loganszeto/kvstore-go"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 border border-[#2a2a2a] text-[#c8c8c8] hover:text-white transition-colors text-sm"
-            >
-              View on GitHub
-            </a>
-          </div>
+          <div className="flex flex-wrap gap-3" />
         </section>
 
         <section className="space-y-4">
@@ -30,7 +21,7 @@ export default function VulnkvDataPage() {
           <VulnkvDemo />
         </section>
 
-        <section className="space-y-3">
+        <section className="space-y-3 -mt-10">
           <h2 className="text-[#c8c8c8] text-2xl font-normal">What just happened?</h2>
           <p className="text-[#969696] text-sm max-w-3xl">
             Every command you type is sent to a live instance of vulnkv. The server logs each change to a write-ahead log,
@@ -55,33 +46,10 @@ export default function VulnkvDataPage() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-[#c8c8c8] text-2xl font-normal">Engineering highlights</h2>
-          <ul className="list-disc list-inside text-[#969696] text-sm space-y-2">
-            <li>Goroutine-per-connection concurrency model.</li>
-            <li>Write-ahead log with CRC checks and safe replay on startup.</li>
-            <li>Lazy TTL expiration without background sweeps.</li>
-            <li>Integration tests over real TCP sockets.</li>
-            <li>Benchmark tool measuring ops/sec and p99 latency.</li>
-          </ul>
-        </section>
-
-        <section className="space-y-3">
           <h2 className="text-[#c8c8c8] text-2xl font-normal">Quick demo snapshot</h2>
           <div className="border border-[#2a2a2a] bg-black/30 p-4">
             <img src="/vulnkv-demo.svg" alt="vulnkv demo terminal snapshot" className="w-full" />
           </div>
-        </section>
-
-        <section className="space-y-3">
-          <h2 className="text-[#c8c8c8] text-2xl font-normal">Read the deep dive</h2>
-          <a
-            href="https://github.com/loganszeto/kvstore-go/blob/main/docs/storage.md"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#c8c8c8] hover:text-white transition-colors text-sm"
-          >
-            Read the full design breakdown →
-          </a>
         </section>
 
         <section className="space-y-3">
