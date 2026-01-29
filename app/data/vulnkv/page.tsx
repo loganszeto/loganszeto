@@ -4,21 +4,16 @@ import VulnkvDemo from './VulnkvDemo';
 export default function VulnkvDataPage() {
   return (
     <div className="flex flex-col min-h-screen px-6 sm:px-8 lg:px-12 pt-24 pb-24">
-      <div className="max-w-5xl w-full mx-auto space-y-16">
+      <div className="max-w-2xl w-full mx-auto space-y-16">
         <section className="space-y-4">
           <h1 className="text-[#c8c8c8] text-4xl sm:text-5xl font-normal">
-            vulnkv — a persistent key-value store built from scratch in Go
+            Key Value Store
           </h1>
           <p className="text-[#969696] text-base max-w-2xl">
-            Concurrent TCP server, write-ahead logging, crash recovery, TTL, and a live interactive demo.
+            A persistent, Redis-lite key-value store built from scratch in Go with a concurrent TCP server, WAL-backed crash
+            recovery, TTL support, and a live interactive demo.
           </p>
           <div className="flex flex-wrap gap-3">
-            <a
-              href="#demo"
-              className="px-4 py-2 border border-[#2a2a2a] text-[#c8c8c8] hover:text-white transition-colors text-sm"
-            >
-              Try the live demo
-            </a>
             <a
               href="https://github.com/loganszeto/kvstore-go"
               target="_blank"
@@ -143,9 +138,19 @@ internal/persistence`}
           <p className="text-[#969696] text-sm">
             Explore the full project detail page for architecture context and additional benchmarks.
           </p>
-          <Link href="/projects/vulnkv" className="text-[#c8c8c8] hover:text-white transition-colors text-sm">
-            Project overview →
-          </Link>
+          <div className="flex flex-col gap-2 text-sm">
+            <Link href="/projects/vulnkv" className="text-[#c8c8c8] hover:text-white transition-colors">
+              Project overview →
+            </Link>
+            <a
+              href="https://github.com/loganszeto/kvstore-go"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#c8c8c8] hover:text-white transition-colors"
+            >
+              GitHub repo →
+            </a>
+          </div>
         </section>
       </div>
     </div>
