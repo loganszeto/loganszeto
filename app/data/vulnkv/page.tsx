@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import VulnkvDemo from './VulnkvDemo';
 
 export default function VulnkvDataPage() {
@@ -7,11 +6,17 @@ export default function VulnkvDataPage() {
       <div className="max-w-2xl w-full mx-auto space-y-16">
         <section className="space-y-4">
           <h1 className="text-[#c8c8c8] text-4xl sm:text-5xl font-normal">
-            Key Value Store
+            Building a Persistent Key Value Store from Scratch in Go
           </h1>
           <p className="text-[#969696] text-base max-w-2xl">
-            A persistent, Redis-lite key-value store built from scratch in Go with a concurrent TCP server, WAL-backed crash
-            recovery, TTL support, and a live interactive demo.
+            While building an automated CVE scanning system, I ran into a bottleneck that wasn’t a security problem. It was a
+            systems problem.
+          </p>
+          <p className="text-[#969696] text-sm max-w-2xl">
+            Repeatedly parsing large NVD feeds and matching CPE records was slow and redundant. PostgreSQL was great for storage,
+            but not for ultra fast repeated lookups. What I really needed was a fast, persistent, concurrent key value store to
+            act as a cache and index layer. So instead of reaching for Redis lite, I built one from scratch to understand how these
+            systems actually work.
           </p>
           <div className="flex flex-wrap gap-3" />
         </section>
@@ -19,37 +24,51 @@ export default function VulnkvDataPage() {
         <section className="space-y-4">
           <h2 className="text-[#c8c8c8] text-2xl font-normal">Interactive Terminal</h2>
           <VulnkvDemo />
+          <p className="text-[#969696] text-sm max-w-2xl">
+            Every command you type is sent to a live instance of vulnkv. The server logs each change to disk using a write ahead
+            log, updates an in memory store for speed, and responds in real time.
+          </p>
         </section>
 
         <section className="space-y-3 -mt-10">
-          <h2 className="text-[#c8c8c8] text-2xl font-normal">What just happened?</h2>
+          <h2 className="text-[#c8c8c8] text-2xl font-normal">The bottleneck I hit</h2>
           <p className="text-[#969696] text-sm max-w-3xl">
-            Every command you type is sent to a live instance of vulnkv. The server logs each change to a write-ahead log,
-            updates an in-memory store for speed, and returns a response. When you simulate a restart, the server replays the
-            log to restore state.
+            The CVE scanner frequently needs to answer: “Given this software version, what vulnerabilities match it?” That
+            requires mapping CPE records to CVEs, which means parsing and searching large datasets over and over again. I needed
+            something that could keep this index in memory for speed, persist across crashes, and handle concurrent lookups
+            safely. That’s the problem vulnkv solves.
           </p>
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-[#c8c8c8] text-2xl font-normal">Flow</h2>
+          <h2 className="text-[#c8c8c8] text-2xl font-normal">Why this design works</h2>
+          <ul className="list-disc list-inside text-[#969696] text-sm space-y-2">
+            <li>Clients send commands over TCP.</li>
+            <li>Mutations are written to a write ahead log before memory is updated.</li>
+            <li>Reads come directly from memory for speed.</li>
+            <li>On restart, the log is replayed to restore the exact state.</li>
+          </ul>
           <div className="flex flex-wrap items-center gap-3 text-sm text-[#c8c8c8]">
             {['Browser', 'WebSocket', 'KV Engine', 'WAL', 'Memory'].map((label, index) => (
               <div key={label} className="flex items-center gap-3">
-                <div className="border border-[#2a2a2a] px-4 py-2 bg-black/30">{label}</div>
+                <span>{label}</span>
                 {index < 4 && <span className="text-[#6f6f6f]">→</span>}
               </div>
             ))}
           </div>
-          <p className="text-[#969696] text-sm">
-            The demo uses WebSockets to communicate with the same KV engine used by the TCP server implementation in the repo.
+        </section>
+
+        <section className="space-y-3">
+          <h2 className="text-[#c8c8c8] text-2xl font-normal">What makes this nontrivial</h2>
+          <p className="text-[#969696] text-sm max-w-3xl">
+            Building a key value store is easy. Building one that survives crashes, handles many concurrent clients, persists
+            without a database, and enforces TTL without background sweeps is where real systems engineering starts.
           </p>
         </section>
 
         <section className="space-y-3">
           <h2 className="text-[#c8c8c8] text-2xl font-normal">Quick demo snapshot</h2>
-          <div className="border border-[#2a2a2a] bg-black/30 p-4">
-            <img src="/vulnkv-demo.svg" alt="vulnkv demo terminal snapshot" className="w-full" />
-          </div>
+          <img src="/vulnkv-demo.svg" alt="vulnkv demo terminal snapshot" className="w-full" />
         </section>
 
         <section className="space-y-3">
@@ -60,66 +79,12 @@ internal/protocol
 internal/store
 internal/persistence`}
           </pre>
-        </section>
-
-        <section className="space-y-4">
-          <h2 className="text-[#c8c8c8] text-2xl font-normal">What makes it interactive</h2>
-          <div className="overflow-x-auto border border-[#2a2a2a]">
-            <table className="min-w-full text-sm">
-              <thead className="bg-black/40 text-[#c8c8c8]">
-                <tr>
-                  <th className="px-4 py-2 text-left">User action</th>
-                  <th className="px-4 py-2 text-left">What happens</th>
-                </tr>
-              </thead>
-              <tbody className="text-[#969696]">
-                <tr className="border-t border-[#2a2a2a]">
-                  <td className="px-4 py-2">Types command</td>
-                  <td className="px-4 py-2">Sent over WebSocket to a live server instance.</td>
-                </tr>
-                <tr className="border-t border-[#2a2a2a]">
-                  <td className="px-4 py-2">Clicks “Load CVE sample”</td>
-                  <td className="px-4 py-2">Populates realistic CVE keys and verifies them with a GET.</td>
-                </tr>
-                <tr className="border-t border-[#2a2a2a]">
-                  <td className="px-4 py-2">Clicks “Simulate restart”</td>
-                  <td className="px-4 py-2">Reconnects and shows WAL-backed state still available.</td>
-                </tr>
-                <tr className="border-t border-[#2a2a2a]">
-                  <td className="px-4 py-2">Runs mini benchmark</td>
-                  <td className="px-4 py-2">Measures ops/sec against the live engine.</td>
-                </tr>
-                <tr className="border-t border-[#2a2a2a]">
-                  <td className="px-4 py-2">Types KEYS cve:*</td>
-                  <td className="px-4 py-2">Returns real data that was just loaded.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
           <p className="text-[#969696] text-sm">
-            You are driving the demo — every button and command hits the same live engine.
+            The website demo is just a thin WebSocket wrapper. The real TCP server, CLI, tests, and benchmark tool are in the
+            repository.
           </p>
         </section>
 
-        <section className="space-y-3">
-          <h2 className="text-[#c8c8c8] text-2xl font-normal">Looking for more?</h2>
-          <p className="text-[#969696] text-sm">
-            Explore the full project detail page for architecture context and additional benchmarks.
-          </p>
-          <div className="flex flex-col gap-2 text-sm">
-            <Link href="/projects/vulnkv" className="text-[#c8c8c8] hover:text-white transition-colors">
-              Project overview →
-            </Link>
-            <a
-              href="https://github.com/loganszeto/kvstore-go"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#c8c8c8] hover:text-white transition-colors"
-            >
-              GitHub repo →
-            </a>
-          </div>
-        </section>
       </div>
     </div>
   );
