@@ -9,6 +9,14 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: 'vulnkv',
+    title: 'vulnkv',
+    description: 'A Redis-lite key-value store with WAL persistence, TTLs, and a live WebSocket demo.',
+    tech: ['Go', 'WAL', 'TCP', 'WebSocket', 'Cloud Run'],
+    githubUrl: 'https://github.com/loganszeto/kvstore-go',
+    liveUrl: 'https://kv-demo-389510831213.us-central1.run.app/',
+  },
+  {
     slug: 'zothacks',
     title: 'ZotWee',
     description: 'A campus restroom finder that maps nearby gender-neutral bathrooms and routes users to the closest option.',
